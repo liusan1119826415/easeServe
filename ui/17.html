@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0052D9",
+                        "on-primary": "#FFFFFF",
+                        "primary-container": "#D6E4FF",
+                        "on-primary-container": "#001A46",
+                        secondary: "#585E71",
+                        "on-secondary": "#FFFFFF",
+                        "surface": "#F2F3F5",
+                        "on-surface": "#1C1B1F",
+                        "surface-variant": "#E1E2EC",
+                        "on-surface-variant": "#44474F",
+                        "outline": "#74777F",
+                        "outline-variant": "#C4C6D0",
+                        "inverse-surface": "#2F3033",
+                        "surface-container-lowest": "#FFFFFF",
+                        "surface-container-low": "#F7F8FA",
+                        "surface-container": "#F0F2F5",
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Public Sans", "sans-serif"],
+                        "display": ["Public Sans", "sans-serif"],
+                        "body": ["Public Sans", "sans-serif"],
+                        "label": ["Public Sans", "sans-serif"]
+                    },
+                    spacing: {
+                        'margin-page': '1rem',
+                        'gutter-grid': '1rem'
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .chat-bubble-ai {
+            border-radius: 1.25rem 1.25rem 1.25rem 0.25rem;
+        }
+        .chat-bubble-user {
+            border-radius: 1.25rem 1.25rem 0.25rem 1.25rem;
+        }
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        .ocr-scanning-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #0052D9, transparent);
+            position: absolute;
+            width: 100%;
+            top: 0;
+            animation: scan 2s linear infinite;
+        }
+        @keyframes scan {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between px-margin-page h-14">
+<div class="flex items-center gap-3">
+<button class="active:scale-95 transition-transform text-primary">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline text-lg font-bold text-on-surface">专项人工客服</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">call</span>
+</button>
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Main Chat Canvas -->
+<main class="pt-20 pb-36 px-4 max-w-2xl mx-auto min-h-screen flex flex-col gap-6">
+<!-- System Message -->
+<div class="flex justify-center">
+<span class="text-xs text-on-surface-variant/60 bg-surface-variant/30 px-3 py-1 rounded-full">专项法律顾问已接入，为您提供专业支持</span>
+</div>
+<!-- AI Greeting -->
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+</div>
+<div class="chat-bubble-ai bg-white p-4 shadow-sm text-on-surface border border-outline-variant/30 max-w-[85%]">
+<p class="text-sm leading-relaxed">您好！我是您的专项服务专员。针对您提到的法律文书处理，您可以点击下方 <span class="font-bold text-primary">“文字识别”</span> 快速上传保单、合同或仲裁文书。我会为您进行深度解析。</p>
+</div>
+</div>
+<!-- OCR Quick Actions Bento -->
+<div class="grid grid-cols-3 gap-2 py-2">
+<div class="col-span-3 mb-2 px-1">
+<h3 class="text-xs font-semibold text-secondary uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">document_scanner</span> 
+                文字识别加速
+            </h3>
+</div>
+<button class="bg-white border border-outline-variant hover:border-primary p-3 rounded-xl flex flex-col items-center gap-2 transition-all active:scale-95">
+<div class="w-10 h-10 bg-blue-50 text-primary rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<span class="text-xs font-medium">保单</span>
+</button>
+<button class="bg-white border border-outline-variant hover:border-primary p-3 rounded-xl flex flex-col items-center gap-2 transition-all active:scale-95">
+<div class="w-10 h-10 bg-blue-50 text-primary rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">description</span>
+</div>
+<span class="text-xs font-medium">合同</span>
+</button>
+<button class="bg-white border border-outline-variant hover:border-primary p-3 rounded-xl flex flex-col items-center gap-2 transition-all active:scale-95">
+<div class="w-10 h-10 bg-blue-50 text-primary rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">gavel</span>
+</div>
+<span class="text-xs font-medium">仲裁文书</span>
+</button>
+</div>
+<!-- User Message with Uploaded Document -->
+<div class="flex items-start justify-end gap-3">
+<div class="max-w-[85%]">
+<div class="chat-bubble-user bg-primary p-4 shadow-sm text-on-primary">
+<div class="relative rounded-lg overflow-hidden border border-white/20 mb-3 bg-on-primary/10">
+<img alt="法律文书识别" class="w-full h-40 object-cover opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzvciWcpJIob3Qxl2vqrLfFcFcTsu3_P4N5lVXwzzD5ac0sHkx2X5qerCy1TqnCV9DmBydozUowrUHwjovaWvz-5nRhpdK2jrXq4yo-42NFJZhMdWVFwrV4Lh2Zy5RFs5-DMJ2ku7McQ5ryd4J3nqbBpeVIqyWoUmoG95hbPhsA_NG6ZGtMHfGbC4cV8V-4v5Fhp1dZySH_QIwx1NKGmkNG0XjP_jnOUzzte3r1R-77_USqlRgJELl0VvH1MrCLpE8kAjCpDoJqFAM"/>
+<div class="ocr-scanning-line"></div>
+<div class="absolute inset-0 flex items-center justify-center bg-black/20">
+<span class="material-symbols-outlined text-4xl text-white animate-pulse">sync</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-xs font-medium opacity-90">
+<span class="material-symbols-outlined text-[18px]">cloud_upload</span>
+                    已上传：保险理赔合同样本.pdf
+                </div>
+</div>
+<div class="mt-2 flex items-center justify-end gap-2">
+<div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+<span class="text-xs text-primary font-semibold">文字识别中...</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center flex-shrink-0 overflow-hidden border border-outline-variant">
+<img alt="Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9TTXhqKgKmfgnGbkMa8E3SFEdXKtyX2Y5AMJxixlImKGbnCZGO3V-HhdMK_WZX-PcUK1VetTmmy_IiMOcRCjqVnq7NvXiP-htt3TrZ5Ztyk-SjqveZ48KxaQFhqP-P3tZBaat7IsUfSyx6zam9akri4SSGysx7EqJxRbUIA9bKJkvT0xuEPwa8GqlA6RQKLX4m0O084u_ntlmPLOL4NglFax2VPV7nsc3O-FHWObeilEdtpOXmq0rFEiz8Xh9sK84pvPsy06AhlRh"/>
+</div>
+</div>
+<!-- AI Recognizing Result Preview -->
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+</div>
+<div class="chat-bubble-ai bg-white p-4 shadow-sm text-on-surface border border-outline-variant/30 max-w-[85%]">
+<div class="flex items-center gap-2 mb-3 text-primary">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="text-xs font-bold uppercase tracking-tight">文字提取完成</span>
+</div>
+<div class="space-y-2 text-sm">
+<div class="bg-surface p-2 rounded border-l-4 border-primary/40 italic text-on-surface-variant">
+                    "第四条：关于不可抗力因素导致的违约责任..."
+                </div>
+<p class="leading-relaxed mt-2">已成功识别文书核心条款。检测到这是一份<span class="font-bold">仲裁裁决书</span>。是否需要我对赔偿金额计算逻辑进行深度复核？</p>
+</div>
+<div class="mt-4 flex flex-wrap gap-2">
+<button class="text-xs px-3 py-1.5 rounded-full border border-primary text-primary font-medium active:scale-95 transition-transform">核心条款摘要</button>
+<button class="text-xs px-3 py-1.5 rounded-full border border-primary text-primary font-medium active:scale-95 transition-transform">法律效力核查</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Input Area -->
+<footer class="fixed bottom-0 w-full z-50 glass-panel border-t border-outline-variant/50 pb-safe">
+<!-- OCR Feature Highlight Bar -->
+<div class="flex items-center gap-3 px-4 py-2 bg-primary/5">
+<div class="flex-1 flex items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide"><button class="flex items-center gap-1 bg-primary text-on-primary px-3 py-1 rounded-full text-xs font-bold transition-all active:scale-95 shadow-lg shadow-primary/20"><span class="material-symbols-outlined text-[16px]">psychology</span>文字识别</button><button class="flex items-center gap-1 bg-white border border-outline-variant/30 text-on-surface-variant px-3 py-1 rounded-full text-xs font-medium transition-all active:scale-95">保单</button><button class="flex items-center gap-1 bg-white border border-outline-variant/30 text-on-surface-variant px-3 py-1 rounded-full text-xs font-medium transition-all active:scale-95"><span class="material-symbols-outlined text-[16px]">more_horiz</span>更多</button></div>
+<button class="text-primary active:scale-95">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<!-- Input Bar -->
+<div class="flex items-center gap-3 px-4 py-3"><div class="flex-1 bg-surface-container rounded-xl px-3 py-2 flex items-center gap-2 border border-outline-variant/20"><button class="text-on-surface-variant active:scale-90 transition-transform flex-shrink-0"><span class="material-symbols-outlined text-[24px]">add_circle</span></button><input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-on-surface-variant/50" placeholder="咨询专项客服..." type="text"/><button class="text-on-surface-variant flex-shrink-0"><span class="material-symbols-outlined text-[24px]">sentiment_satisfied</span></button></div><button class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg shadow-primary/30 active:scale-90 transition-transform flex-shrink-0"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span></button></div>
+</footer>
+<script>
+    document.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('touchstart', function() {
+            this.classList.add('opacity-70');
+        });
+        btn.addEventListener('touchend', function() {
+            this.classList.remove('opacity-70');
+        });
+    });
+</script>
+</body></html>

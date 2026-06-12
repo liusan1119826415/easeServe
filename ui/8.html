@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Enterprise Logic - Sharing Poster</title>
+<!-- Tailwind CSS v3 CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#1E6FFF',
+            'brand-light': '#E8F1FF',
+          },
+          borderRadius: {
+            'custom': '12px',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="layout">
+    body {
+      background-color: #F5F7FA;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    /* Pattern background overlay to mimic the reference image */
+    .bg-pattern {
+      background-image: radial-gradient(circle at 10% 20%, rgba(30, 111, 255, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(30, 111, 255, 0.05) 0%, transparent 40%);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+    }
+    /* Ensuring the poster aspect ratio */
+    .poster-container {
+      max-width: 450px;
+      margin: 0 auto;
+      aspect-ratio: 768 / 1376;
+    }
+  </style>
+<style data-purpose="decorations">
+    /* Subtle geometric shapes found in the reference */
+    .circle-decoration {
+      position: absolute;
+      border-radius: 50%;
+      background: #1E6FFF;
+      opacity: 0.1;
+    }
+    .dot-grid {
+      background-image: radial-gradient(#1E6FFF 1px, transparent 1px);
+      background-size: 12px 12px;
+      width: 60px;
+      height: 80px;
+      opacity: 0.2;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<!-- BEGIN: MainContent -->
+<main class="flex-grow flex items-center justify-center p-6 relative overflow-hidden">
+<div class="bg-pattern"></div>
+<!-- Decorative background elements -->
+<div class="circle-decoration w-48 h-48 -top-10 -right-10"></div>
+<div class="circle-decoration w-32 h-32 bottom-20 -left-10"></div>
+<div class="dot-grid absolute top-24 right-4"></div>
+<div class="dot-grid absolute bottom-40 left-4"></div>
+<!-- BEGIN: PosterCard -->
+<section class="poster-container w-full bg-white rounded-custom shadow-xl border border-blue-50 flex flex-col items-center py-10 px-8 relative z-10" data-purpose="poster-card" id="poster-card">
+<!-- Brand Logo Header -->
+<header class="flex items-center gap-2 mb-8">
+<div class="w-8 h-8 bg-brand rounded-lg flex items-center justify-center">
+<svg class="w-5 h-5" fill="white" viewbox="0 0 24 24">
+<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold text-gray-800 tracking-tight">企业逻辑</h1>
+</header>
+<!-- User Profile Section -->
+<div class="flex flex-col items-center mb-10" data-purpose="user-info">
+<!-- Circular Avatar Placeholder -->
+<div class="w-20 h-20 rounded-full bg-gray-200 border-2 border-white shadow-sm overflow-hidden mb-3">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCD_vEKkI4OiZF5Dz6iADL-gJWDRYUh4NusI6GUkD2Xg83XOfgdHZKqf-QXY5uAJOKb27OHCF140N9g3kWgHMCylB9cWx8JXbUqZuA9VT8Fspir6aAF_DV9kvTD5NMRX2eq28aKoAgAosllBLXYZCB3R-kEdU0pEBKyjHCoDIK41CmgX1HFleIQYsHO8mOgkoDLrC1jD9J67svBYeIQ308oEsKzCLWKqAtuMdfPAja8lUBSHd0gieBqw54Xo0b03a135KOxQ89b_f0"/>
+</div>
+<span class="text-gray-600 font-medium text-lg">张经理</span>
+</div>
+<!-- Headlines Section -->
+<div class="text-center mb-12" data-purpose="headlines">
+<h2 class="text-4xl font-extrabold text-brand mb-4 tracking-wide">专业企业服务</h2>
+<p class="text-xl text-gray-500 font-normal">邀请好友赚取奖励</p>
+</div>
+<!-- QR Code Section -->
+<div class="flex flex-col items-center mt-auto mb-6" data-purpose="qr-container">
+<div class="p-3 border-2 border-brand rounded-2xl bg-white shadow-sm mb-4">
+<img alt="App QR Code" class="w-44 h-44 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLuy3BPO4WZCot16-DTgcQcgGk9n5wm6WxaHExSZFJbOGV4FmPWE9cEaGQIXMckLzI8uYXfH9V9c5zCpxJ39czAOtVzYLygupPZFyXV4DieW_o_YGnpy7mfuls74xKoAB9yeINjkaSkY_tGEENkPlbK8GFyFuJHtHYbmUkKK0fMUpGoBQ_EO-yj3cbBSvNtl_vIupTn3RlEreQ1XgZQ2K5Io11gsYYWHwGPdhJB19luSenut66fSHF5xWGkj"/>
+</div>
+<p class="text-gray-400 text-sm tracking-widest">扫码加入</p>
+</div>
+<!-- Bottom decorative bar -->
+<div class="absolute bottom-0 left-0 right-0 h-2 bg-brand opacity-10 rounded-b-custom"></div>
+</section>
+<!-- END: PosterCard -->
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: ActionBar -->
+<footer class="bg-white border-t border-gray-100 p-4 pb-8 flex items-center justify-between gap-4 sticky bottom-0 z-20" data-purpose="action-bar">
+<!-- Secondary Action -->
+<button class="flex-1 py-4 px-6 rounded-full border border-brand text-brand font-bold text-center active:bg-blue-50 transition-colors" data-purpose="btn-save" type="button">
+      保存海报
+    </button>
+<!-- Primary Action -->
+<button class="flex-[1.5] py-4 px-6 rounded-full bg-brand text-white font-bold text-center shadow-lg shadow-blue-200 active:bg-blue-700 transition-colors" data-purpose="btn-share" type="button">
+      分享好友
+    </button>
+</footer>
+<!-- END: ActionBar -->
+<script data-purpose="ui-logic">
+    // Simple script for interaction feedback
+    document.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        console.log(`Action: ${btn.textContent.trim()}`);
+      });
+    });
+  </script>
+</body></html>

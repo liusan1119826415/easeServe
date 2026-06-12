@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#c5c7c8",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#dae2ff",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed": "#001848",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#191c1e",
+                    "surface": "#f9f9ff",
+                    "secondary-container": "#dee0e2",
+                    "surface-bright": "#f9f9ff",
+                    "on-primary-container": "#fefcff",
+                    "on-background": "#181c23",
+                    "tertiary-fixed-dim": "#ffb598",
+                    "on-tertiary-fixed": "#360f00",
+                    "background": "#f9f9ff",
+                    "outline-variant": "#c2c6d8",
+                    "inverse-on-surface": "#eef0fc",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#444749",
+                    "surface-container": "#ebedf9",
+                    "primary-fixed-dim": "#b2c5ff",
+                    "secondary-fixed": "#e1e2e4",
+                    "primary-container": "#146bfb",
+                    "inverse-surface": "#2c3039",
+                    "surface-tint": "#0056d2",
+                    "inverse-primary": "#b2c5ff",
+                    "primary": "#0053cd",
+                    "surface-container-highest": "#dfe2ed",
+                    "secondary": "#5c5f60",
+                    "on-surface": "#181c23",
+                    "on-primary-fixed-variant": "#0040a1",
+                    "surface-dim": "#d7dae5",
+                    "outline": "#727787",
+                    "on-tertiary-container": "#fffbff",
+                    "tertiary-fixed": "#ffdbce",
+                    "surface-container-high": "#e5e8f3",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#7e2c00",
+                    "on-secondary-container": "#606365",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f1f3ff",
+                    "tertiary": "#a13b00",
+                    "surface-variant": "#dfe2ed",
+                    "on-surface-variant": "#424655",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#ca4b00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-lg": "24px",
+                    "stack-sm": "8px",
+                    "margin-page": "16px",
+                    "stack-md": "16px",
+                    "gutter-grid": "12px"
+            },
+            "fontFamily": {
+                    "h1": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "h2": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "h1": ["22px", {"lineHeight": "30px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "18px", "fontWeight": "500"}],
+                    "h2": ["18px", {"lineHeight": "26px", "fontWeight": "600"}],
+                    "caption": ["11px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9ff;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .safe-area-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .bento-card {
+            background: #ffffff;
+            transition: all 0.2s ease;
+        }
+        .bento-card:active {
+            transform: scale(0.98);
+            background: #f1f3ff;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-background">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex items-center justify-between px-margin-page h-14">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform hover:opacity-80 transition-opacity text-primary dark:text-primary-fixed">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
+</button>
+<h1 class="font-h2 text-h2 text-primary dark:text-primary-fixed">联系客服</h1>
+</div>
+<div></div> <!-- Spacer -->
+</header>
+<main class="pt-20 px-margin-page pb-24 max-w-md mx-auto">
+<!-- Hero Section -->
+<section class="mb-stack-lg">
+<div class="relative overflow-hidden rounded-xl h-40 flex items-center p-stack-md bg-primary-container">
+<div class="z-10 relative">
+<h2 class="font-h1 text-h1 text-on-primary-container mb-2">您好，需要什么帮助？</h2>
+<p class="font-body-md text-on-primary-container opacity-90">我们将竭诚为您提供专业的服务支持</p>
+</div>
+<div class="absolute right-[-20px] bottom-[-20px] opacity-20">
+<span class="material-symbols-outlined" style="font-size: 160px; color: white;">support_agent</span>
+</div>
+</div>
+</section>
+<!-- Primary Contact Methods (Bento Style) -->
+<section class="grid grid-cols-2 gap-gutter-grid mb-stack-lg">
+<!-- Online Chat -->
+<div class="bento-card rounded-xl p-stack-md border border-outline-variant flex flex-col justify-between h-40 shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+</div>
+<div>
+<h3 class="font-h2 text-h2 mb-1">在线客服</h3>
+<p class="font-caption text-secondary">即时响应，专业解答</p>
+</div>
+<button class="w-full py-2 bg-primary text-on-primary rounded-lg font-label-sm active:scale-95 transition-transform">立即咨询</button>
+</div>
+<!-- Hotline -->
+<div class="bento-card rounded-xl p-stack-md border border-outline-variant flex flex-col justify-between h-40 shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">call</span>
+</div>
+<div>
+<h3 class="font-h2 text-h2 mb-1">服务热线</h3>
+<p class="font-caption text-secondary">0731-XXXXXXX</p>
+</div>
+<button class="w-full py-2 bg-secondary-container text-on-secondary-container rounded-lg font-label-sm active:scale-95 transition-transform">拨打电话</button>
+</div>
+</section>
+<!-- WeChat Social Link -->
+<section class="mb-stack-lg">
+<div class="bento-card rounded-xl p-stack-md border border-outline-variant flex items-center justify-between shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A clean, professional WeChat QR code mockup displayed on a white textured paper background. The surrounding aesthetic is minimalist with a single green leaf casting a soft shadow, representing trust and communication. High-key lighting highlights the crisp lines of the corporate identity branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMYgJMFMtDL9EomB7reNJhfxb6HFeRBls0-yAvosxiJgoPDnhqXE03T0wjEJXZU-N3ah9lbcZGCgqL6QHhpYgwNSjdsx1ao12Q-cV0PBOhyM-3XBnJBoONQQkZUSZ9rvknVfnAv_fwGc2k3DeIfDULTcw2Or9H6vefvh6yXX6dcZDp3UlpxrhDjNscxPa6Wmv6pN_wLTTNJgILIv3iTVEpKagLYgMSkPDc2j6NdG27v2a8Yswf8LjTBHFlvo9XGYZVu4qyP9QZwOM0"/>
+</div>
+<div>
+<h3 class="font-h2 text-h2">官方微信</h3>
+<p class="font-body-md text-secondary">关注公众号 获取更多支持</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</section>
+<!-- Common Troubleshooting Categories -->
+<section class="mb-stack-lg">
+<div class="flex items-center justify-between mb-stack-sm">
+<h3 class="font-h2 text-h2">常见问题</h3>
+<span class="font-label-sm text-primary">更多</span>
+</div>
+<div class="space-y-stack-sm">
+<div class="bento-card rounded-lg p-stack-md border border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+<span class="font-body-md">账号与安全</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">arrow_forward_ios</span>
+</div>
+<div class="bento-card rounded-lg p-stack-md border border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">payments</span>
+<span class="font-body-md">订单及支付问题</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">arrow_forward_ios</span>
+</div>
+<div class="bento-card rounded-lg p-stack-md border border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">settings_applications</span>
+<span class="font-body-md">产品功能使用</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">arrow_forward_ios</span>
+</div>
+<div class="bento-card rounded-lg p-stack-md border border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">feedback</span>
+<span class="font-body-md">投诉与建议</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">arrow_forward_ios</span>
+</div>
+</div>
+</section>
+<!-- Service Hours Footer -->
+<footer class="text-center pb-10">
+<p class="font-caption text-secondary">人工服务时间：周一至周日 09:00 - 21:00</p>
+</footer>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant dark:border-outline flex justify-around items-center h-16 px-gutter-grid pb-safe">
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">首页</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-sm text-label-sm">智能问答</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">business_center</span>
+<span class="font-label-sm text-label-sm">企业信息</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-semibold hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">我的</span>
+</div>
+</nav>
+<script>
+        // Simple ripple effect for cards
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                let ripple = document.createElement('div');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+    </script>
+</body></html>

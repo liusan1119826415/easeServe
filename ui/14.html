@@ -1,0 +1,158 @@
+<!DOCTYPE html><html class="light" lang="zh-CN" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>选择注册类型 - 服务体系</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1E6FFF",
+                        "on-primary": "#FFFFFF",
+                        "primary-container": "#D8E2FF",
+                        "on-primary-container": "#001A41",
+                        secondary: "#565F71",
+                        "on-secondary": "#FFFFFF",
+                        surface: "#FDFBFF",
+                        "on-surface": "#1A1B1E",
+                        "surface-variant": "#E1E2EC",
+                        "on-surface-variant": "#44474F",
+                        outline: "#74777F",
+                        "outline-variant": "#C4C6D0",
+                        "inverse-surface": "#2F3033",
+                        "surface-container-lowest": "#FFFFFF",
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Public Sans", "sans-serif"],
+                        display: ["Public Sans", "sans-serif"],
+                        body: ["Public Sans", "sans-serif"],
+                        label: ["Public Sans", "sans-serif"]
+                    },
+                    fontSize: {
+                        "h1": ["2rem", { lineHeight: "2.5rem", fontWeight: "700" }],
+                        "h2": ["1.5rem", { lineHeight: "2rem", fontWeight: "600" }],
+                        "label-sm": ["0.75rem", { lineHeight: "1rem", fontWeight: "500" }],
+                    },
+                    spacing: {
+                        "margin-page": "1.5rem",
+                        "gutter-grid": "1rem",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        body {
+            font-family: 'Public Sans', sans-serif;
+            background-color: #F8FAFC;
+        }
+        .selection-card:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex items-center justify-between px-margin-page h-14 w-full">
+<button class="flex items-center justify-center text-primary dark:text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-h2 text-h2 text-primary dark:text-primary-fixed absolute left-1/2 -translate-x-1/2">选择注册类型</h1>
+<div class="w-6"></div> <!-- Spacer for visual balance -->
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-24 pb-12 px-margin-page flex flex-col max-w-2xl mx-auto w-full">
+<div class="mb-10 text-center">
+<h2 class="text-3xl font-extrabold text-on-surface mb-3 tracking-tight">欢迎加入我们</h2>
+<p class="text-on-surface-variant leading-relaxed">请选择最符合您身份的注册类型，以便我们为您提供精准的服务体验。</p>
+</div>
+<div class="grid grid-cols-1 gap-6">
+<!-- Individual Registration Card -->
+<button class="selection-card group relative overflow-hidden bg-surface-container-lowest border-2 border-transparent hover:border-primary transition-all duration-300 rounded-3xl p-8 flex flex-col items-start text-left shadow-sm hover:shadow-xl border-primary" onclick="selectType('individual')">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+
+</div>
+<div class="w-16 h-16 rounded-2xl bg-primary-container text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" data-icon="person">person</span>
+</div>
+
+<p class="text-on-surface-variant text-sm mb-6 leading-normal max-w-[80%]">适用于寻求个人服务、自由职业者或独立开发者。享受个性化配置与快速部署工具。</p>
+<div class="flex items-center text-primary font-semibold text-sm">
+<span class="">立即开始</span>
+<span class="material-symbols-outlined ml-2 text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</button>
+<!-- Enterprise Registration Card -->
+<button class="selection-card group relative overflow-hidden bg-surface-container-lowest border-2 border-transparent hover:border-primary transition-all duration-300 rounded-3xl p-8 flex flex-col items-start text-left shadow-sm hover:shadow-xl" onclick="selectType('enterprise')">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+
+</div>
+<div class="w-16 h-16 rounded-2xl bg-on-primary-container text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" data-icon="business_center" style="font-variation-settings: &quot;FILL&quot; 1, &quot;wght&quot; 400, &quot;GRAD&quot; 0, &quot;opsz&quot; 24;">business_center</span>
+</div>
+
+<p class="text-on-surface-variant text-sm mb-6 leading-normal max-w-[80%]">适用于公司团体与组织。包含多账号管理、合规性审计以及企业级SLA保障。</p>
+<div class="flex items-center text-primary font-semibold text-sm">
+<span class="">开启企业之旅</span>
+<span class="material-symbols-outlined ml-2 text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</button>
+</div>
+<!-- Decorative Image Section -->
+<div class="mt-12 rounded-3xl overflow-hidden h-48 relative">
+<img alt="Business Environment" class="w-full h-full object-cover" data-alt="A clean and modern corporate office environment with floor-to-ceiling windows and minimalist furniture. The scene is bathed in soft, natural daylight, reflecting a professional and collaborative atmosphere. The color palette is dominated by corporate blues and crisp whites, maintaining a light-mode aesthetic that suggests transparency and innovation. The overall mood is calm, professional, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4ywfBTWxmnpLcP0T9GaiAUgYM2QGUYuURsWGZDQSOEIqsofghKDN2y1v1xOfPo6h2ciDJyQUV_zi6enaYOWeFrgU3i5xWWgwLq8VGBPLz5zTtuOn_HyHSfEpKZiIpzlKk1EqzNgo5ZO5eC3_SS2kZ4YDZOt3DiOdZvhyMdGoAn9f4cPD-0mayr8BuEfiUtPFnOXfXxbcU2Hzb3dmRiditva8iZgpzR_lxPyLphIVQa8pKoiLLuu2V9_H2ntBxlqZ77CCZbvrL-Hq5">
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-6">
+<p class="text-white text-sm font-medium">加入全球 50,000+ 企业与个人的信任选择</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Suppressed for focused task, but framework is kept) -->
+<!-- Not rendered as per "Semantic Shell Mandate" for Transactional screens -->
+<script>
+        function selectType(type) {
+            console.log('Selected registration type:', type);
+            // Integration logic here
+            const cards = document.querySelectorAll('.selection-card');
+            cards.forEach(card => card.classList.remove('border-primary'));
+            event.currentTarget.classList.add('border-primary');
+            
+            // Visual feedback before navigation
+            setTimeout(() => {
+                alert(`您已选择: ${type === 'individual' ? '个人注册' : '企业注册'}`);
+            }, 200);
+        }
+
+        // Apply visual weights to material icons from symbols
+        document.querySelectorAll('.material-symbols-outlined').forEach(icon => {
+            if (icon.closest('.bg-on-primary-container')) {
+                icon.style.fontVariationSettings = "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24";
+            }
+        });
+    </script>
+
+
+</body></html>

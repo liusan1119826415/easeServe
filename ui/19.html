@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>我的收藏 - 服务体系</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#c5c7c8",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#dae2ff",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed": "#001848",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#191c1e",
+                    "surface": "#f9f9ff",
+                    "secondary-container": "#dee0e2",
+                    "surface-bright": "#f9f9ff",
+                    "on-primary-container": "#fefcff",
+                    "on-background": "#181c23",
+                    "tertiary-fixed-dim": "#ffb598",
+                    "on-tertiary-fixed": "#360f00",
+                    "background": "#f9f9ff",
+                    "outline-variant": "#c2c6d8",
+                    "inverse-on-surface": "#eef0fc",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#444749",
+                    "surface-container": "#ebedf9",
+                    "primary-fixed-dim": "#b2c5ff",
+                    "secondary-fixed": "#e1e2e4",
+                    "primary-container": "#146bfb",
+                    "inverse-surface": "#2c3039",
+                    "surface-tint": "#0056d2",
+                    "inverse-primary": "#b2c5ff",
+                    "primary": "#0053cd",
+                    "surface-container-highest": "#dfe2ed",
+                    "secondary": "#5c5f60",
+                    "on-surface": "#181c23",
+                    "on-primary-fixed-variant": "#0040a1",
+                    "surface-dim": "#d7dae5",
+                    "outline": "#727787",
+                    "on-tertiary-container": "#fffbff",
+                    "tertiary-fixed": "#ffdbce",
+                    "surface-container-high": "#e5e8f3",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#7e2c00",
+                    "on-secondary-container": "#606365",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f1f3ff",
+                    "tertiary": "#a13b00",
+                    "surface-variant": "#dfe2ed",
+                    "on-surface-variant": "#424655",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#ca4b00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-lg": "24px",
+                    "stack-sm": "8px",
+                    "margin-page": "16px",
+                    "stack-md": "16px",
+                    "gutter-grid": "12px"
+            },
+            "fontFamily": {
+                    "h1": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "h2": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "h1": ["22px", {"lineHeight": "30px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "18px", "fontWeight": "500"}],
+                    "h2": ["18px", {"lineHeight": "26px", "fontWeight": "600"}],
+                    "caption": ["11px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .active-heart {
+            font-variation-settings: 'FILL' 1;
+            color: #ba1a1a;
+        }
+        .custom-scrollbar::-webkit-scrollbar { display: none; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex items-center justify-between px-margin-page h-14 w-full">
+<button class="active:scale-95 transition-transform hover:opacity-80 transition-opacity text-primary dark:text-primary-fixed" onclick="history.back()">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-h2 text-h2 text-on-surface">我的收藏</h1>
+<div class="w-6"></div> <!-- Spacer for center alignment -->
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 px-margin-page">
+<!-- Filter Tabs -->
+<div class="flex gap-stack-sm mb-stack-md overflow-x-auto custom-scrollbar">
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-full font-label-sm text-label-sm whitespace-nowrap">全部</button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded-full font-label-sm text-label-sm whitespace-nowrap">流程图</button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded-full font-label-sm text-label-sm whitespace-nowrap">政策指南</button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded-full font-label-sm text-label-sm whitespace-nowrap">企业培训</button>
+</div>
+<!-- Collections Bento Grid -->
+<div class="grid grid-cols-2 gap-gutter-grid">
+<!-- Item 1: Recruitment Flow -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_4px_12px_rgba(0,0,0,0.05)] active:scale-[0.98] transition-transform duration-200">
+<div class="relative h-32 w-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, professional corporate diagram on a bright white background representing a structured recruitment process. The image features modern blue and grey geometric lines and icons that signify organizational flow and institutional reliability. High-key lighting emphasizes a corporate efficiency aesthetic with plenty of negative space and a minimalist layout." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgSZw8rZBQYWnd-HGGlsZCp9SQob3yT-UNros_d0gljzEoYTNq-oMbAabs0j0Zlh_k76JCS0F_ojbFrKBVTbsSaTPpRFIk2Ppg4exLjcGV0-9aKvuROTp1opDzkxVsBFbpvNepPGfDMe5g4bb2luXijm4Jy1r8Cw0gsjHe_8R6xoMCo9HZ1_egErKjis_pNVXYp0SBb0t1cGUBp70Jf6cS-yJAb7r0VvbepTt6_JShoPhRSlMVSRlJ0cCGOtLsWsj7thhoxtxn2sOt"/>
+<button class="absolute top-2 right-2 bg-white/90 p-1.5 rounded-full flex items-center justify-center shadow-sm" onclick="toggleHeart(this)">
+<span class="material-symbols-outlined active-heart" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="p-stack-sm flex flex-col justify-between flex-grow">
+<div>
+<h3 class="font-label-sm text-body-md text-on-surface leading-tight mb-1">招聘流程图</h3>
+<p class="font-caption text-caption text-on-surface-variant">人力体系 • 2024.03.12</p>
+</div>
+</div>
+</div>
+<!-- Item 2: Social Security -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_4px_12px_rgba(0,0,0,0.05)] active:scale-[0.98] transition-transform duration-200">
+<div class="relative h-32 w-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional close-up of a government document and a pair of spectacles on a clean office desk, representing a social security policy guide. The lighting is soft and natural, highlighting the textures of high-quality paper. The scene conveys trust, stability, and institutional professionalism using a muted color palette of whites and soft greys with subtle blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKKZ9E976toXyeElFNKXQlCr3JAnVp4EmTXMBLl_sQlFFt8IYSr5793HlgykqLhNoo2ZPe4meiNztEaEOE2uEVV7IclnqzCPAGSj8L-wx2KnQ4As6jIkMvRcuylSEKSZfXktde3HBp3NP3Za9XapCTH1rD9-chknz3mgjKY3lE37XEQdbwEssIVKdoHDWKd6eGDWRJjajbyB8RyqtPaKwr1oX40FzZmDVwx9X8wj2URry2avVy0CIHf62R-vVwPq4MQFJZXN0RA4pg"/>
+<button class="absolute top-2 right-2 bg-white/90 p-1.5 rounded-full flex items-center justify-center shadow-sm" onclick="toggleHeart(this)">
+<span class="material-symbols-outlined active-heart" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="p-stack-sm flex flex-col justify-between flex-grow">
+<div>
+<h3 class="font-label-sm text-body-md text-on-surface leading-tight mb-1">社保政策指南</h3>
+<p class="font-caption text-caption text-on-surface-variant">财务/法律 • 2024.02.28</p>
+</div>
+</div>
+</div>
+<!-- Item 3: Onboarding Manual -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_4px_12px_rgba(0,0,0,0.05)] active:scale-[0.98] transition-transform duration-200">
+<div class="relative h-32 w-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A high-fidelity photograph of a modern workspace with a tablet displaying an onboarding manual title. The background shows a blurry, professional office environment with bright lighting and clean lines. The aesthetic is contemporary corporate, focusing on efficiency and clarity with a color palette of white, light grey, and corporate blue tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8d3gG9gRJAWbp016pbyynW6R2-e-UMR9NZN6O4xjkmWqXJewuzHnCFnMtnwMX9y8b2wOaSg7IL4Y-wjG21E7HxVe4L7x-IFOuM5-NRvDY0Y59GTV82KPkyYrcHEVrpz9qwmnLMQvzCgFo9oH0QDvFyG0EFA8obxp58qPXLSm1VvHKwJwqrqdphZCNn54c8Qfu7Og3udPXzy89HsbTYTlO-W_T7rjAeZlVMOHxTppjzULh8E7qLWG0dFqKDCmHx4lNk2FYaU11PI_-"/>
+<button class="absolute top-2 right-2 bg-white/90 p-1.5 rounded-full flex items-center justify-center shadow-sm" onclick="toggleHeart(this)">
+<span class="material-symbols-outlined active-heart" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="p-stack-sm flex flex-col justify-between flex-grow">
+<div>
+<h3 class="font-label-sm text-body-md text-on-surface leading-tight mb-1">员工手册 V2.0</h3>
+<p class="font-caption text-caption text-on-surface-variant">综合管理 • 2024.01.15</p>
+</div>
+</div>
+</div>
+<!-- Item 4: Training Material -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_4px_12px_rgba(0,0,0,0.05)] active:scale-[0.98] transition-transform duration-200">
+<div class="relative h-32 w-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A sophisticated business presentation scene where a diverse team is collaborating in a brightly lit glass-walled meeting room. The image emphasizes professional reliability and teamwork through its clean composition and structured environment. The color scheme is dominated by cool corporate blues and crisp whites, evoking a sense of institutional stability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDp4eJTHrdn5X-FXUctd8nJ8NSawB9UZpVDSeI_1BAvHW63RpE7p-_vH-dIe6ihwMTv5F9sxspv_eczgzxIXK0LMXD5mg8OOKFC4ogMEKMH6G1vWTr5zmK6g3K6-w9obYaNJgZQoCA99PPziMx--UPIezkeRaJt9Xu8Fv_DiWuDczbezzQWyluhZnatpBzmwqp4FAnJIhZr56Gbcp05H0XpGcj1HNTdSvBj6ZB9WyavSDZI6pLoc-ig2YdU6lw0Ow9yQ5a7sbPOUfz"/>
+<button class="absolute top-2 right-2 bg-white/90 p-1.5 rounded-full flex items-center justify-center shadow-sm" onclick="toggleHeart(this)">
+<span class="material-symbols-outlined active-heart" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="p-stack-sm flex flex-col justify-between flex-grow">
+<div>
+<h3 class="font-label-sm text-body-md text-on-surface leading-tight mb-1">领导力培训课件</h3>
+<p class="font-caption text-caption text-on-surface-variant">个人成长 • 2024.04.01</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State (Hidden) -->
+<div class="hidden flex flex-col items-center justify-center pt-20" id="empty-state">
+<span class="material-symbols-outlined text-outline text-6xl mb-4" data-icon="inventory_2">inventory_2</span>
+<p class="font-body-lg text-on-surface-variant">暂无收藏内容</p>
+<p class="font-caption text-outline">您可以去首页浏览并收藏您感兴趣的服务</p>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant dark:border-outline flex justify-around items-center h-16 w-full px-gutter-grid">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">首页</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-sm text-label-sm">智能问答</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="business_center">business_center</span>
+<span class="font-label-sm text-label-sm">企业信息</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-semibold hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm">我的</span>
+</a>
+</nav>
+<script>
+        function toggleHeart(button) {
+            const icon = button.querySelector('.material-symbols-outlined');
+            const isFilled = icon.style.fontVariationSettings.includes("'FILL' 1");
+            
+            if (isFilled) {
+                icon.style.fontVariationSettings = "'FILL' 0";
+                icon.classList.remove('active-heart');
+                icon.classList.add('text-on-surface-variant');
+            } else {
+                icon.style.fontVariationSettings = "'FILL' 1";
+                icon.classList.add('active-heart');
+                icon.classList.remove('text-on-surface-variant');
+            }
+        }
+
+        // Add micro-interaction to cards
+        document.querySelectorAll('.grid > div').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if(e.target.closest('button')) return;
+                // Navigation simulation
+                console.log('Navigating to detail page...');
+            });
+        });
+    </script>
+</body></html>

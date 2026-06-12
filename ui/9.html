@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>个税计算器 - 商务简约版</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#1E6FFF',
+            bgGray: '#F8F9FA',
+          },
+          borderRadius: {
+            'custom': '12px',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-styles">
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #F8F9FA;
+      color: #333;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .card-shadow {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-10">
+<!-- BEGIN: MainHeader -->
+<header class="bg-white border-b border-gray-100 py-4 sticky top-0 z-10">
+<h1 class="text-center text-lg font-bold text-gray-800">个税计算器</h1>
+</header>
+<!-- END: MainHeader -->
+<main class="p-4 space-y-4 max-w-md mx-auto">
+<!-- BEGIN: SalarySection -->
+<section class="bg-white p-5 rounded-custom card-shadow" data-purpose="salary-input-section">
+<h2 class="text-sm font-semibold text-gray-500 mb-4 flex items-center">
+<span class="w-1 h-4 bg-brand mr-2 rounded-full"></span>
+        基础工资与社保
+      </h2>
+<div class="space-y-4">
+<!-- Monthly Salary -->
+<div class="flex items-center justify-between border-b border-gray-50 pb-3">
+<label class="text-sm text-gray-600" for="monthly-salary">月度税前工资 (元)</label>
+<input class="w-1/2 border-none text-right focus:ring-0 text-sm font-medium" id="monthly-salary" placeholder="请输入金额" type="number" value="15000"/>
+</div>
+<!-- Annual Salary -->
+<div class="flex items-center justify-between border-b border-gray-50 pb-3">
+<label class="text-sm text-gray-600" for="annual-salary">年度税前工资 (元)</label>
+<input class="w-1/2 border-none text-right focus:ring-0 text-sm font-medium bg-transparent" id="annual-salary" placeholder="自动计算" readonly="" type="number"/>
+</div>
+<!-- Social Security -->
+<div class="flex items-center justify-between">
+<label class="text-sm text-gray-600" for="social-security">月度五险一金 (元)</label>
+<input class="w-1/2 border-none text-right focus:ring-0 text-sm font-medium" id="social-security" placeholder="请输入金额" type="number" value="1500"/>
+</div>
+</div>
+<div class="mt-4 p-3 bg-blue-50 rounded-lg">
+<p class="text-xs text-brand leading-relaxed">
+          起征点标准：月度 5,000.00 元，年度 60,000.00 元
+        </p>
+</div>
+</section>
+<!-- END: SalarySection -->
+<!-- BEGIN: DeductionSection -->
+<section class="bg-white p-5 rounded-custom card-shadow" data-purpose="deduction-section">
+<h2 class="text-sm font-semibold text-gray-500 mb-4 flex items-center">
+<span class="w-1 h-4 bg-brand mr-2 rounded-full"></span>
+        专项附加扣除 (月度)
+      </h2>
+<div class="space-y-5">
+<!-- Deduction Item: Child Education -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<input class="rounded text-brand focus:ring-brand h-4 w-4" id="check-child" type="checkbox"/>
+<label class="text-sm text-gray-700" for="check-child">子女教育</label>
+</div>
+<div class="flex items-center gap-2">
+<input class="w-20 border-gray-200 rounded-md text-xs py-1 px-2 focus:ring-brand focus:border-brand" id="val-child" type="number" value="2000"/>
+<span class="text-xs text-gray-400">元</span>
+</div>
+</div>
+<!-- Deduction Item: Continuing Education -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<input class="rounded text-brand focus:ring-brand h-4 w-4" id="check-edu" type="checkbox"/>
+<label class="text-sm text-gray-700" for="check-edu">继续教育</label>
+</div>
+<div class="flex items-center gap-2">
+<input class="w-20 border-gray-200 rounded-md text-xs py-1 px-2 focus:ring-brand focus:border-brand" id="val-edu" type="number" value="400"/>
+<span class="text-xs text-gray-400">元</span>
+</div>
+</div>
+<!-- Deduction Item: Elderly Support -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<input class="rounded text-brand focus:ring-brand h-4 w-4" id="check-elder" type="checkbox"/>
+<label class="text-sm text-gray-700" for="check-elder">赡养老人</label>
+</div>
+<div class="flex items-center gap-2">
+<input class="w-20 border-gray-200 rounded-md text-xs py-1 px-2 focus:ring-brand focus:border-brand" id="val-elder" type="number" value="3000"/>
+<span class="text-xs text-gray-400">元</span>
+</div>
+</div>
+<!-- Deduction Item: Home Loan -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<input class="rounded text-brand focus:ring-brand h-4 w-4" id="check-loan" type="checkbox"/>
+<label class="text-sm text-gray-700" for="check-loan">首套房贷</label>
+</div>
+<div class="flex items-center gap-2">
+<input class="w-20 border-gray-200 rounded-md text-xs py-1 px-2 focus:ring-brand focus:border-brand" id="val-loan" type="number" value="1000"/>
+<span class="text-xs text-gray-400">元</span>
+</div>
+</div>
+<!-- Deduction Item: Rent -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<input class="rounded text-brand focus:ring-brand h-4 w-4" id="check-rent" type="checkbox"/>
+<label class="text-sm text-gray-700" for="check-rent">住房租金</label>
+</div>
+<div class="flex items-center gap-2">
+<input class="w-20 border-gray-200 rounded-md text-xs py-1 px-2 focus:ring-brand focus:border-brand" id="val-rent" placeholder="金额" type="number"/>
+<span class="text-xs text-gray-400">元</span>
+</div>
+</div>
+<!-- Deduction Item: Medical -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<input class="rounded text-brand focus:ring-brand h-4 w-4" id="check-medical" type="checkbox"/>
+<label class="text-sm text-gray-700" for="check-medical">大病医疗</label>
+</div>
+<div class="flex items-center gap-2">
+<input class="w-20 border-gray-200 rounded-md text-xs py-1 px-2 focus:ring-brand focus:border-brand" id="val-medical" placeholder="金额" type="number"/>
+<span class="text-xs text-gray-400">元</span>
+</div>
+</div>
+<!-- Deduction Item: Infant Care -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<input class="rounded text-brand focus:ring-brand h-4 w-4" id="check-infant" type="checkbox"/>
+<label class="text-sm text-gray-700" for="check-infant">3岁以下婴幼儿</label>
+</div>
+<div class="flex items-center gap-2">
+<input class="w-20 border-gray-200 rounded-md text-xs py-1 px-2 focus:ring-brand focus:border-brand" id="val-infant" type="number" value="2000"/>
+<span class="text-xs text-gray-400">元</span>
+</div>
+</div>
+</div>
+</section>
+<!-- END: DeductionSection -->
+<!-- BEGIN: ButtonSection -->
+<section class="grid grid-cols-2 gap-4 py-2" data-purpose="action-buttons">
+<button class="py-3 px-6 bg-white border border-gray-200 text-gray-600 rounded-custom font-medium active:bg-gray-50 transition-colors" id="btn-reset">
+        重置
+      </button>
+<button class="py-3 px-6 bg-brand text-white rounded-custom font-medium shadow-lg shadow-blue-200 active:scale-95 transition-transform" id="btn-calc">
+        开始计算
+      </button>
+</section>
+<!-- END: ButtonSection -->
+<!-- BEGIN: ResultsSection -->
+<section class="bg-white rounded-custom card-shadow overflow-hidden" data-purpose="results-display">
+<div class="p-4 bg-gray-50 border-b border-gray-100 flex justify-between items-center">
+<h2 class="text-sm font-semibold text-gray-700">计算结果</h2>
+<span class="text-xs text-gray-400">仅供参考</span>
+</div>
+<div class="p-5">
+<table class="w-full text-sm">
+<thead>
+<tr class="text-gray-400 border-b border-gray-50">
+<th class="text-left font-normal pb-3">项目</th>
+<th class="text-right font-normal pb-3">月度</th>
+<th class="text-right font-normal pb-3">年度</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-50">
+<tr>
+<td class="py-3 text-gray-600">应纳税额</td>
+<td class="text-right py-3 font-medium" id="res-taxable-month">--</td>
+<td class="text-right py-3 font-medium" id="res-taxable-year">--</td>
+</tr>
+<tr>
+<td class="py-3 text-gray-600">适用税率</td>
+<td class="text-right py-3 font-medium" id="res-rate-month">--</td>
+<td class="text-right py-3 font-medium" id="res-rate-year">--</td>
+</tr>
+<tr>
+<td class="py-3 text-gray-600">速算扣除数</td>
+<td class="text-right py-3 font-medium" id="res-quick-month">--</td>
+<td class="text-right py-3 font-medium" id="res-quick-year">--</td>
+</tr>
+<tr class="text-brand">
+<td class="py-3 font-semibold">应缴税款</td>
+<td class="text-right py-3 font-bold" id="res-tax-month">--</td>
+<td class="text-right py-3 font-bold" id="res-tax-year">--</td>
+</tr>
+<tr class="bg-blue-50/50">
+<td class="py-4 font-semibold text-gray-800 px-2 rounded-l-md">税后实发</td>
+<td class="text-right py-4 font-bold text-gray-800" id="res-final-month">--</td>
+<td class="text-right py-4 font-bold text-gray-800 px-2 rounded-r-md" id="res-final-year">--</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- END: ResultsSection -->
+</main>
+<!-- BEGIN: LogicScripts -->
+<script data-purpose="calculator-logic">
+    document.addEventListener('DOMContentLoaded', () => {
+      const inputSalary = document.getElementById('monthly-salary');
+      const inputAnnual = document.getElementById('annual-salary');
+      const inputSocial = document.getElementById('social-security');
+      const btnCalc = document.getElementById('btn-calc');
+      const btnReset = document.getElementById('btn-reset');
+
+      // Update annual salary automatically
+      const updateAnnual = () => {
+        const monthly = parseFloat(inputSalary.value) || 0;
+        inputAnnual.value = (monthly * 12).toFixed(2);
+      };
+      
+      inputSalary.addEventListener('input', updateAnnual);
+      updateAnnual();
+
+      // Calculation Logic
+      btnCalc.addEventListener('click', () => {
+        const monthly = parseFloat(inputSalary.value) || 0;
+        const social = parseFloat(inputSocial.value) || 0;
+        const threshold = 5000;
+        
+        // Sum deductions
+        let deductionTotal = 0;
+        const checks = ['child', 'edu', 'elder', 'loan', 'rent', 'medical', 'infant'];
+        checks.forEach(id => {
+          if (document.getElementById(`check-${id}`).checked) {
+            deductionTotal += parseFloat(document.getElementById(`val-${id}`).value) || 0;
+          }
+        });
+
+        // Basic Monthly Calculation (Simplified for UI display)
+        const taxableMonth = Math.max(0, monthly - social - threshold - deductionTotal);
+        
+        // Mock Tax Table Logic (Simplify for demonstration)
+        const getTaxInfo = (amount) => {
+          if (amount <= 3000) return { rate: '3%', quick: 0, tax: amount * 0.03 };
+          if (amount <= 12000) return { rate: '10%', quick: 210, tax: amount * 0.1 - 210 };
+          if (amount <= 25000) return { rate: '20%', quick: 1410, tax: amount * 0.2 - 1410 };
+          return { rate: '25%', quick: 2660, tax: amount * 0.25 - 2660 };
+        };
+
+        const monthRes = getTaxInfo(taxableMonth);
+        const yearRes = {
+          taxable: taxableMonth * 12,
+          tax: monthRes.tax * 12,
+          rate: monthRes.rate,
+          quick: monthRes.quick * 12
+        };
+
+        // UI Updates
+        document.getElementById('res-taxable-month').innerText = taxableMonth.toFixed(2);
+        document.getElementById('res-taxable-year').innerText = yearRes.taxable.toFixed(2);
+        
+        document.getElementById('res-rate-month').innerText = monthRes.rate;
+        document.getElementById('res-rate-year').innerText = yearRes.rate;
+        
+        document.getElementById('res-quick-month').innerText = monthRes.quick.toFixed(2);
+        document.getElementById('res-quick-year').innerText = yearRes.quick.toFixed(2);
+        
+        document.getElementById('res-tax-month').innerText = monthRes.tax.toFixed(2);
+        document.getElementById('res-tax-year').innerText = yearRes.tax.toFixed(2);
+        
+        document.getElementById('res-final-month').innerText = (monthly - social - monthRes.tax).toFixed(2);
+        document.getElementById('res-final-year').innerText = ((monthly - social - monthRes.tax) * 12).toFixed(2);
+      });
+
+      btnReset.addEventListener('click', () => {
+        location.reload();
+      });
+    });
+  </script>
+<!-- END: LogicScripts -->
+</body></html>

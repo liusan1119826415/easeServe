@@ -1,0 +1,277 @@
+<!DOCTYPE html><html lang="zh-CN" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#ffdbce",
+                        "on-secondary-fixed-variant": "#444749",
+                        "on-secondary-fixed": "#191c1e",
+                        "inverse-surface": "#2c3039",
+                        "secondary-container": "#dee0e2",
+                        "tertiary-container": "#ca4b00",
+                        "primary-fixed": "#dae2ff",
+                        "on-primary-fixed-variant": "#0040a1",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-background": "#181c23",
+                        "surface-container-high": "#e5e8f3",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#ebedf9",
+                        "surface-tint": "#0056d2",
+                        "on-primary-container": "#fefcff",
+                        "outline": "#727787",
+                        "tertiary-fixed-dim": "#ffb598",
+                        "background": "#f9f9ff",
+                        "primary": "#0053cd",
+                        "secondary": "#5c5f60",
+                        "on-secondary-container": "#606365",
+                        "on-tertiary-fixed": "#360f00",
+                        "tertiary": "#a13b00",
+                        "primary-container": "#146bfb",
+                        "on-surface": "#181c23",
+                        "on-primary-fixed": "#001848",
+                        "on-error-container": "#93000a",
+                        "surface": "#f9f9ff",
+                        "on-tertiary-container": "#fffbff",
+                        "on-surface-variant": "#424655",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#dfe2ed",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#b2c5ff",
+                        "secondary-fixed-dim": "#c5c7c8",
+                        "surface-container-low": "#f1f3ff",
+                        "inverse-on-surface": "#eef0fc",
+                        "surface-dim": "#d7dae5",
+                        "surface-bright": "#f9f9ff",
+                        "secondary-fixed": "#e1e2e4",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "outline-variant": "#c2c6d8",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#dfe2ed",
+                        "on-tertiary-fixed-variant": "#7e2c00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "24px",
+                        "stack-sm": "8px",
+                        "gutter-grid": "12px",
+                        "stack-md": "16px",
+                        "margin-page": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h2": ["Inter"],
+                        "h1": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "18px", "fontWeight": "500"}],
+                        "caption": ["11px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "h2": ["18px", {"lineHeight": "26px", "fontWeight": "600"}],
+                        "h1": ["22px", {"lineHeight": "30px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex items-center justify-between px-margin-page h-14">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed cursor-pointer active:scale-95 transition-transform">arrow_back</span>
+<h1 class="font-h2 text-h2 text-on-surface">服务大厅</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity cursor-pointer active:scale-90">search</span>
+<div class="relative">
+<span class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity cursor-pointer active:scale-90">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-24 px-margin-page">
+<!-- Hero / Banner Section -->
+<section class="mb-stack-lg relative rounded-xl overflow-hidden aspect-[21/9] bg-primary-container">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent z-10 flex flex-col justify-center px-stack-md text-on-primary-container">
+<h2 class="font-h1 text-h1 mb-1">企业一站式服务</h2>
+<p class="font-body-md text-body-md opacity-90">专业、高效、可靠的数字化管理助手</p>
+</div>
+<img alt="Modern Office" class="w-full h-full object-cover" data-alt="A spacious, contemporary corporate office environment with clean glass walls and minimalist white furniture. The lighting is bright and natural, reflecting a high-key light mode aesthetic. The color palette is dominated by professional blues and crisp whites, creating an atmosphere of institutional stability and modern efficiency. High-fidelity architectural details emphasize the professional and reliable brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAYovAZpMyqLQLpfn-YxzSJtnZSUJQv7qhsCBdbHic2U4Lp7vAt5qr6BpUmj6iyq79nAug8dfNCqeimzPErsbgBTCp6zCsVf2jvlNuSoGQVxtoi4x0AmOD1pHPVaH8kSPfdPGQ4REZiuOSCqneh6yyH-Ab3xVsn2wIkfFwNgtwsZUeM2bjOpB-a5V2x3sn6tEsIyOI9jmESzeVEl31A7x_oFdQsmyJpMYRu2lH3FMYNfpqDmygzWrEJjDV8pyiM-3d3M-S_7byVXMX">
+</section>
+<!-- Service Grid -->
+<div class="grid grid-cols-2 gap-gutter-grid"><div class="bg-surface-container-low p-stack-md rounded-xl active:scale-[0.98] transition-transform duration-200 cursor-pointer flex flex-col gap-2">
+  <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-1">
+    <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">security</span>
+  </div>
+  <h3 class="font-h2 text-[15px] leading-tight text-on-surface">社保+公积金</h3>
+  <p class="font-caption text-secondary">缴纳/查询/提取</p>
+</div>
+<div class="bg-surface-container-low p-stack-md rounded-xl active:scale-[0.98] transition-transform duration-200 cursor-pointer flex flex-col gap-2">
+  <div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center mb-1">
+    <span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">business</span>
+  </div>
+  <h3 class="font-h2 text-[15px] leading-tight text-on-surface">工商管理</h3>
+  <p class="font-caption text-secondary">注册/变更/注销</p>
+</div>
+<div class="bg-surface-container-low p-stack-md rounded-xl active:scale-[0.98] transition-transform duration-200 cursor-pointer flex flex-col gap-2">
+  <div class="w-10 h-10 rounded-lg bg-error-container flex items-center justify-center mb-1">
+    <span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">payments</span>
+  </div>
+  <h3 class="font-h2 text-[15px] leading-tight text-on-surface">财税管理</h3>
+  <p class="font-caption text-secondary">报税/筹划/审计</p>
+</div>
+<div class="bg-surface-container-low p-stack-md rounded-xl active:scale-[0.98] transition-transform duration-200 cursor-pointer flex flex-col gap-2">
+  <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-1">
+    <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">groups</span>
+  </div>
+  <h3 class="font-h2 text-[15px] leading-tight text-on-surface">人力资源</h3>
+  <p class="font-caption text-secondary">招聘/培训/绩效</p>
+</div>
+<div class="bg-surface-container-low p-stack-md rounded-xl active:scale-[0.98] transition-transform duration-200 cursor-pointer flex flex-col gap-2">
+  <div class="w-10 h-10 rounded-lg bg-tertiary-container/10 flex items-center justify-center mb-1">
+    <span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+  </div>
+  <h3 class="font-h2 text-[15px] leading-tight text-on-surface">商业保险</h3>
+  <p class="font-caption text-secondary">理赔/咨询/方案</p>
+</div>
+<div class="bg-surface-container-low p-stack-md rounded-xl active:scale-[0.98] transition-transform duration-200 cursor-pointer flex flex-col gap-2">
+  <div class="w-10 h-10 rounded-lg bg-primary-container/20 flex items-center justify-center mb-1">
+    <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">calculate</span>
+  </div>
+  <h3 class="font-h2 text-[15px] leading-tight text-on-surface">工具计算器</h3>
+  <p class="font-caption text-secondary">个税/房贷/五险一金</p>
+</div>
+<div class="bg-surface-container-low p-stack-md rounded-xl active:scale-[0.99] transition-transform duration-200 cursor-pointer flex flex-col gap-2 col-span-2">
+  <div class="flex items-center gap-4">
+    <div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center">
+      <span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">file_download</span>
+    </div>
+    <div>
+      <h3 class="font-h2 text-[15px] leading-tight text-on-surface">模板下载</h3>
+      <p class="font-caption text-secondary">合同/制度/公文范本</p>
+    </div>
+    <span class="material-symbols-outlined ml-auto text-outline-variant">chevron_right</span>
+  </div>
+</div></div>
+<!-- Recent Activity Section -->
+<section class="mt-stack-lg">
+
+<div class="space-y-stack-sm">
+
+
+</div>
+</section><section class="mt-stack-lg mb-stack-lg">
+<div class="flex items-center gap-2 mb-stack-sm">
+<div class="w-1 h-4 bg-primary rounded-full"></div>
+<h2 class="font-h2 text-h2 text-on-surface">第三方服务</h2>
+</div>
+<div class="grid grid-cols-4 gap-y-6 gap-x-2">
+<div class="flex flex-col items-center text-center gap-2">
+<div class="w-10 h-10 rounded-full bg-[#e31e24] flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[20px]">balance</span>
+</div>
+<span class="text-caption leading-tight text-on-surface-variant">人民法院在线服务全国版</span>
+</div>
+<div class="flex flex-col items-center text-center gap-2">
+<div class="w-10 h-10 rounded-full bg-[#e31e24] flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[20px]">gavel</span>
+</div>
+<span class="text-caption leading-tight text-on-surface-variant">审判流程信息公开</span>
+</div>
+<div class="flex flex-col items-center text-center gap-2">
+<div class="w-10 h-10 rounded-full bg-[#e31e24] flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[20px]">menu_book</span>
+</div>
+<span class="text-caption leading-tight text-on-surface-variant">人民法院案例库</span>
+</div>
+<div class="flex flex-col items-center text-center gap-2">
+<div class="w-10 h-10 rounded-full bg-[#8b1a1a] flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[20px]">database</span>
+</div>
+<span class="text-caption leading-tight text-on-surface-variant">国家法律法规数据库</span>
+</div>
+<div class="flex flex-col items-center text-center gap-2">
+<div class="w-10 h-10 rounded-full bg-[#e31e24] flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[20px]">handshake</span>
+</div>
+<span class="text-caption leading-tight text-on-surface-variant">多元调解</span>
+</div>
+<div class="flex flex-col items-center text-center gap-2">
+<div class="w-10 h-10 rounded-full bg-[#e31e24] flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[20px]">verified_user</span>
+</div>
+<span class="text-caption leading-tight text-on-surface-variant">中国律师身份核验</span>
+</div>
+<div class="flex flex-col items-center text-center gap-2">
+<div class="w-10 h-10 rounded-full bg-[#d4a017] flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[20px]">badge</span>
+</div>
+<span class="text-caption leading-tight text-on-surface-variant">国家企业信用信息</span>
+</div>
+<div class="flex flex-col items-center text-center gap-2">
+<div class="w-10 h-10 rounded-full bg-[#f39c12] flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[20px]">calendar_month</span>
+</div>
+<span class="text-caption leading-tight text-on-surface-variant">放假安排</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant dark:border-outline flex justify-around items-center h-16 px-gutter-grid">
+<!-- 首页 - Active -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-semibold active:scale-90 transition-transform duration-200 opacity-100" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">home</span>
+<span class="font-label-sm text-label-sm">首页</span>
+</a>
+<!-- 智能问答 -->
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-sm text-label-sm">智能问答</span>
+</a>
+<!-- 企业信息 -->
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">business_center</span>
+<span class="font-label-sm text-label-sm">企业信息</span>
+</a>
+<!-- 我的 -->
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">我的</span>
+</a>
+</nav>
+
+
+</body></html>

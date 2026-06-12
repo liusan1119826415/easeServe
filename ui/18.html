@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="zh-CN" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>我的订单</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#c5c7c8",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#dae2ff",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#001848",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#191c1e",
+                        "surface": "#f9f9ff",
+                        "secondary-container": "#dee0e2",
+                        "surface-bright": "#f9f9ff",
+                        "on-primary-container": "#fefcff",
+                        "on-background": "#181c23",
+                        "tertiary-fixed-dim": "#ffb598",
+                        "on-tertiary-fixed": "#360f00",
+                        "background": "#f9f9ff",
+                        "outline-variant": "#c2c6d8",
+                        "inverse-on-surface": "#eef0fc",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#444749",
+                        "surface-container": "#ebedf9",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "secondary-fixed": "#e1e2e4",
+                        "primary-container": "#146bfb",
+                        "inverse-surface": "#2c3039",
+                        "surface-tint": "#0056d2",
+                        "inverse-primary": "#b2c5ff",
+                        "primary": "#0053cd",
+                        "surface-container-highest": "#dfe2ed",
+                        "secondary": "#5c5f60",
+                        "on-surface": "#181c23",
+                        "on-primary-fixed-variant": "#0040a1",
+                        "surface-dim": "#d7dae5",
+                        "outline": "#727787",
+                        "on-tertiary-container": "#fffbff",
+                        "tertiary-fixed": "#ffdbce",
+                        "surface-container-high": "#e5e8f3",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#7e2c00",
+                        "on-secondary-container": "#606365",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f1f3ff",
+                        "tertiary": "#a13b00",
+                        "surface-variant": "#dfe2ed",
+                        "on-surface-variant": "#424655",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#ca4b00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "24px",
+                        "stack-sm": "8px",
+                        "margin-page": "16px",
+                        "stack-md": "16px",
+                        "gutter-grid": "12px"
+                    },
+                    "fontFamily": {
+                        "h1": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "h2": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h1": ["22px", { "lineHeight": "30px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "h2": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+                        "caption": ["11px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f9f9ff;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .safe-pb { padding-bottom: env(safe-area-inset-bottom); }
+        .glass-effect {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.85);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex items-center justify-between px-margin-page h-14">
+<button class="text-primary dark:text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform" onclick="history.back()">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-h2 text-h2 text-on-surface">我的订单</h1>
+<div class="w-6"></div> <!-- Spacer for centering -->
+</header>
+<!-- Content Canvas -->
+<main class="pt-14 pb-20 min-h-screen">
+<!-- Tabs Section (Bento Inspired Horizontal Scroll) -->
+<div class="sticky top-14 bg-surface-container-lowest/90 backdrop-blur-md z-40 px-margin-page py-stack-md flex gap-stack-md overflow-x-auto no-scrollbar">
+<button class="flex-shrink-0 px-6 py-2 rounded-xl bg-primary text-on-primary font-label-sm text-label-sm shadow-sm transition-all duration-200">
+                全部
+            </button>
+<button class="flex-shrink-0 px-6 py-2 rounded-xl bg-surface-container text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-variant/50 transition-all duration-200">
+                待支付
+            </button>
+<button class="flex-shrink-0 px-6 py-2 rounded-xl bg-surface-container text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-variant/50 transition-all duration-200">
+                已完成
+            </button>
+</div>
+<!-- Order List -->
+<div class="px-margin-page py-stack-md space-y-stack-md">
+<!-- Order Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-stack-md shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col gap-3 group active:scale-[0.98] transition-transform duration-200">
+<div class="flex justify-between items-center">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">订单编号: #SRV-92834</span>
+<span class="text-primary font-label-sm text-label-sm bg-primary-fixed px-2 py-0.5 rounded">服务中</span>
+</div>
+<div class="flex gap-stack-md items-center">
+<div class="w-16 h-16 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden">
+<img alt="人力资源咨询" class="w-full h-full object-cover" data-alt="A clean, minimalist corporate office setting with high-key lighting and a professional blue and white color palette. A soft-focus background shows a digital tablet with business graphs, symbolizing human resources consulting and reliability. The aesthetic is high-fidelity, modern, and trustworthy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6OSzJ8WDmfBU5_1cxkzeGQuSQ7gzqZntD2nvNcJdjRov6rreaCGvAw_QTUbWqWzJ7411ZrQ5I8CDqBHhRzvuKZTRdde3k9bJ3yrfUfQMpvqLhdmswUeeG1-LzHke44a1KH_zE4iDwi-5T3W5NZjj36cplN_8AmLzRPBvYkvg0iv3SiPNTKcisdSF-7ZoK7EneEmvCSqYP4iLLjJXAGqoBjKJB_yQum_QKVoALeyGJERtrZN4n3tGGhqvXN6SNFGfwKSgxUuZJf3X2">
+</div>
+<div class="flex-1">
+<h3 class="font-h2 text-body-lg text-on-surface">人力资源咨询</h3>
+<p class="font-caption text-caption text-on-surface-variant mt-0.5">人力资源合规与流程优化服务</p>
+</div>
+<div class="text-right">
+<p class="font-h2 text-h2 text-on-surface">¥9.90</p>
+<p class="font-caption text-caption text-outline">x1</p>
+</div>
+</div>
+<div class="h-px bg-outline-variant/30 w-full my-1"></div>
+<div class="flex justify-between items-center">
+<span class="font-caption text-caption text-on-surface-variant">下单时间: 2023-11-20 14:30</span>
+<div class="flex gap-2 items-center"><button class="px-4 py-2 rounded-xl border border-outline text-label-sm font-label-sm text-on-surface-variant hover:bg-surface-variant/30 transition-colors">申请退款</button><button class="px-4 py-2 rounded-xl bg-primary text-on-primary text-label-sm font-label-sm shadow-sm hover:opacity-80 transition-opacity">查看进度</button></div>
+</div>
+</div>
+<!-- Order Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-stack-md shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col gap-3 group active:scale-[0.98] transition-transform duration-200">
+<div class="flex justify-between items-center">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">订单编号: #SRV-81722</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm bg-secondary-container px-2 py-0.5 rounded">已完成</span>
+</div>
+<div class="flex gap-stack-md items-center">
+<div class="w-16 h-16 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden">
+<img alt="法律顾问" class="w-full h-full object-cover" data-alt="A modern, professional desktop featuring a leather-bound notebook and a premium fountain pen under bright, neutral office lighting. The environment is impeccably organized with a clear corporate aesthetic, utilizing tones of deep blue and crisp whites to evoke a sense of professional authority and legal reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEmQhu-c90BQa_qfQD1h_p1Mx0xkvQnD-DB7q2GvkBYkoluiwiqua2-yyJowdsYMTcixcmMk2a0SFGp9Z3Ate10XjD3yGWcy4QysqRQDtYanY9vieIHTcJbxx5jBk4nrOwQlpVcnLMh9L0_gh2ZuU6ttU363b9SQ195u1fLUm1V7yq4ox8XahAnTDUbaGn9e-8ncUbm2MhuhDi5OGNpjW-nDO8bsU2ymYDCiW7-PdjcZF_jbsEzRZfBDi_tMaNxPO9_dph28YgzyuC">
+</div>
+<div class="flex-1">
+<h3 class="font-h2 text-body-lg text-on-surface">法律顾问</h3>
+<p class="font-caption text-caption text-on-surface-variant mt-0.5">企业年度法律顾问咨询</p>
+</div>
+<div class="text-right">
+<p class="font-h2 text-h2 text-on-surface">¥599.00</p>
+<p class="font-caption text-caption text-outline">x1</p>
+</div>
+</div>
+<div class="h-px bg-outline-variant/30 w-full my-1"></div>
+<div class="flex justify-between items-center">
+<span class="font-caption text-caption text-on-surface-variant">下单时间: 2023-10-15 09:12</span>
+<div class="flex gap-2 items-center"><button class="px-4 py-2 rounded-xl bg-surface-container text-label-sm font-label-sm text-on-surface-variant hover:bg-surface-variant/50 transition-colors">再次购买</button><button class="px-4 py-2 rounded-xl border border-primary text-label-sm font-label-sm text-primary hover:bg-primary-fixed transition-colors">评价</button><button class="p-2 rounded-xl border border-outline text-on-surface-variant hover:bg-surface-variant/30 transition-colors flex items-center justify-center"><span class="material-symbols-outlined">more_horiz</span></button></div>
+</div>
+</div>
+<!-- Order Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-stack-md shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col gap-3 group active:scale-[0.98] transition-transform duration-200">
+<div class="flex justify-between items-center">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">订单编号: #SRV-77210</span>
+<span class="text-error font-label-sm text-label-sm bg-error-container px-2 py-0.5 rounded">待支付</span>
+</div>
+<div class="flex gap-stack-md items-center">
+<div class="w-16 h-16 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden">
+<img alt="数字营销" class="w-full h-full object-cover" data-alt="A clean, high-tech workspace showing a laptop screen with sophisticated analytics and growth charts in vibrant blue and light grey tones. The scene is bright and airy, reflecting a professional atmosphere centered on data-driven marketing and business efficiency. The lighting is soft but precise, emphasizing modern corporate aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC4Cz07CKS_0LQNu3iD-Ss0ESKl4uoZRTkcoVuYtV4t-6oGam7IVHlfL5Sy37IjGyc8as0CJZ3VXLT4MgVqId6p23PCl1eKQ5NPpFrZGo-Th_WEWCndHlOKc_ClbJpMIQNNUASqnFZpK9QfASgIlS6JxNACTZhgEFg1NOSa3g-gy-jG-_mILKYlQgwrftnEnscB4qPrIvbOpVCbs9DC5bYLAnxoA2tMTYQMW8yNxO4r5RbByx5CvnJ6adSiIQrX8YWttW7ECMsbing">
+</div>
+<div class="flex-1">
+<h3 class="font-h2 text-body-lg text-on-surface">数字营销</h3>
+<p class="font-caption text-caption text-on-surface-variant mt-0.5">全渠道数字化转型营销方案</p>
+</div>
+<div class="text-right">
+<p class="font-h2 text-h2 text-on-surface">¥1,200.00</p>
+<p class="font-caption text-caption text-outline">x1</p>
+</div>
+</div>
+<div class="h-px bg-outline-variant/30 w-full my-1"></div>
+<div class="flex justify-between items-center">
+<span class="font-caption text-caption text-error">剩余支付时间: 14:59</span>
+<div class="flex gap-2 items-center"><button class="px-4 py-2 rounded-xl border border-outline text-label-sm font-label-sm text-on-surface-variant hover:bg-surface-variant/30 transition-colors">取消</button><button class="px-4 py-2 rounded-xl bg-primary text-on-primary text-label-sm font-label-sm shadow-sm hover:opacity-80 transition-opacity">立即支付</button></div>
+</div>
+</div>
+</div>
+<!-- Empty State (Hidden) -->
+<div class="hidden flex flex-col items-center justify-center pt-20 px-margin-page text-center">
+<div class="w-32 h-32 bg-surface-container rounded-full flex items-center justify-center mb-stack-md text-outline">
+<span class="material-symbols-outlined text-5xl" data-icon="receipt_long">receipt_long</span>
+</div>
+<h2 class="font-h2 text-h2 text-on-surface">暂无相关订单</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">快去探索您需要的专业服务吧</p>
+<button class="mt-8 px-10 py-3 bg-primary text-on-primary rounded-full font-h2 text-body-lg shadow-md active:scale-95 transition-transform">
+                前往首页
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant dark:border-outline flex justify-around items-center h-16 px-gutter-grid">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">首页</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-sm text-label-sm">智能问答</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="business_center">business_center</span>
+<span class="font-label-sm text-label-sm">企业信息</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-semibold active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: &quot;FILL&quot; 1;">person</span>
+<span class="font-label-sm text-label-sm">我的</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for tabs
+        const tabs = document.querySelectorAll('button.flex-shrink-0');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+                    t.classList.add('bg-surface-container', 'text-on-surface-variant');
+                });
+                tab.classList.remove('bg-surface-container', 'text-on-surface-variant');
+                tab.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+            });
+        });
+    </script>
+
+
+</body></html>

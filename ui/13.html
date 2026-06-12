@@ -1,0 +1,119 @@
+<!DOCTYPE html><html class="light" lang="zh-CN" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>服务体系 - 登录/注册</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1E6FFF",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: "Public Sans", sans-serif;
+            background-color: #f8f6f6;
+        }
+        .custom-shadow {
+            box-shadow: 0 4px 20px -2px rgba(30, 111, 255, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex items-center justify-center min-h-screen p-4">
+<!-- Main Container -->
+<div class="flex-1 flex flex-col px-6 bg-white min-h-screen w-full">
+<!-- Logo Section -->
+<div class="flex flex-col items-center justify-center mt-16 mb-12">
+<div class="w-20 h-20 bg-primary/10 rounded-[12px] flex items-center justify-center mb-4 overflow-hidden">
+<div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-3xl" data-icon="corporate_fare">corporate_fare</span>
+</div>
+</div>
+<h1 class="text-2xl font-bold text-gray-900 tracking-tight">服务体系</h1>
+<p class="text-gray-500 text-sm mt-2">欢迎进入企业服务管理系统</p>
+</div>
+<!-- Illustration / Decoration -->
+<div class="w-full aspect-[4/3] rounded-xl overflow-hidden mb-8 custom-shadow">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover" data-alt="A clean, professional corporate office lobby interior with floor-to-ceiling glass windows and modern minimalist furniture. The lighting is bright and airy, using a soft white and cool blue palette consistent with professional corporate branding. Subtle light blue lens flares add a sense of technological advancement and premium service quality. The mood is welcoming, efficient, and highly organized." style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDFfs1iAfE1hOfsopXroyqZ6Pg1u_DLxvxFoFGnfwOsqhJIPJTsDQIOzX7L7v-hsm8eckpSzQQWsvyQL_oEmP8BGR9cF4Mf1hA0wKQz0G8_tOvIiyQrHzOjBPSJIG9mpCmi_bNMkqV0ZW1h8Des020opIgNTmkTkYGc83B7uIS5PgmRF5bkUBl7ghklKoju1SlDjC5j-A-T2cbXnzrrtZAeIQnP3TrpeexpWffb4xQnc2YXj56DV9qDiMhfk12t1CD8J_a0J7SdERAF&quot;);">
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-4 mb-12">
+<button class="flex h-12 w-full items-center justify-center rounded-xl bg-primary text-white text-base font-semibold transition-all hover:bg-[#1656cc] active:scale-95 shadow-lg shadow-primary/20">
+<span class="truncate">登录</span>
+</button>
+<button class="flex h-12 w-full items-center justify-center rounded-xl bg-white border-2 border-primary text-primary text-base font-semibold transition-all hover:bg-primary/5 active:scale-95">
+<span class="truncate">立即注册</span>
+</button>
+</div>
+<!-- Social/Third Party Option (Subtle) -->
+
+<!-- Legal Checkbox -->
+<div class="pb-10 mt-16">
+<label class="flex items-start gap-3 cursor-pointer group">
+<div class="relative flex items-center">
+<input class="peer h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary focus:ring-offset-0 transition-all cursor-pointer" id="agree-terms" type="checkbox">
+</div>
+<p class="text-xs leading-relaxed text-gray-500 group-hover:text-gray-700 transition-colors">
+                        我已阅读并同意 <a class="text-primary font-medium hover:underline" href="#">《用户协议》</a>、<a class="text-primary font-medium hover:underline" href="#">《隐私政策》</a> 以及授权该应用使用我的基本信息。
+                    </p>
+</label>
+</div>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('button');
+            const checkbox = document.getElementById('agree-terms');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    if (!checkbox.checked) {
+                        e.preventDefault();
+                        // Shake animation for the checkbox container
+                        const label = checkbox.closest('label');
+                        label.classList.add('animate-bounce');
+                        setTimeout(() => label.classList.remove('animate-bounce'), 500);
+                        
+                        // Small alert or toast could be added here
+                        console.log('Please agree to the terms');
+                    } else {
+                        // Handle transition
+                        button.classList.add('opacity-80');
+                        button.innerHTML = '<span class="material-symbols-outlined animate-spin" data-icon="progress_activity">progress_activity</span>';
+                    }
+                });
+            });
+        });
+    </script>
+
+
+</body></html>

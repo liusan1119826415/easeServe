@@ -1,0 +1,261 @@
+<!DOCTYPE html><html lang="zh-CN" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#181c21",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#c3c6ce",
+                    "on-primary-fixed": "#001848",
+                    "primary-fixed-dim": "#b2c5ff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#efeded",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e3e2e2",
+                    "tertiary-fixed": "#ffdbce",
+                    "inverse-primary": "#b2c5ff",
+                    "background": "#faf9f9",
+                    "surface": "#faf9f9",
+                    "tertiary-fixed-dim": "#ffb598",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#7e2c00",
+                    "surface-container-high": "#e9e8e8",
+                    "secondary": "#5b5f65",
+                    "secondary-fixed": "#dfe2ea",
+                    "on-secondary-container": "#61656b",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#c2c6d8",
+                    "on-background": "#1b1c1c",
+                    "on-tertiary-container": "#fffbff",
+                    "on-surface-variant": "#424655",
+                    "surface-tint": "#0056d2",
+                    "primary": "#1E6FFF",
+                    "primary-fixed": "#dae2ff",
+                    "surface-bright": "#faf9f9",
+                    "on-tertiary-fixed": "#360f00",
+                    "on-secondary-fixed-variant": "#43474d",
+                    "outline": "#727787",
+                    "on-surface": "#1b1c1c",
+                    "inverse-surface": "#2f3031",
+                    "secondary-container": "#dfe2ea",
+                    "on-primary-container": "#fefcff",
+                    "surface-container-low": "#f4f3f3",
+                    "tertiary-container": "#ca4b00",
+                    "surface-container-highest": "#e3e2e2",
+                    "inverse-on-surface": "#f2f0f0",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#1E6FFF",
+                    "surface-dim": "#dbdad9",
+                    "on-primary-fixed-variant": "#0040a1",
+                    "tertiary": "#a13b00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "12px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "space-md": "16px",
+                    "space-xl": "32px",
+                    "space-lg": "24px",
+                    "grid-gutter": "12px",
+                    "page-margin": "16px",
+                    "space-xs": "4px",
+                    "space-sm": "8px"
+            },
+            "fontFamily": {
+                    "h2": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "h3": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "h1": ["Plus Jakarta Sans"],
+                    "caption": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "h2": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "18px", "fontWeight": "500"}],
+                    "h3": ["18px", {"lineHeight": "26px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "h1": ["24px", {"lineHeight": "34px", "fontWeight": "600"}],
+                    "caption": ["11px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+            background-color: #faf9f9;
+        }
+        .form-input-focus:focus-within {
+            border-color: #1E6FFF;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 1px #1E6FFF;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface select-none">
+<!-- TopAppBar Section -->
+<header class="bg-surface flex items-center px-page-margin h-[48px] w-full z-50 fixed top-0 border-b border-surface-variant">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer active:opacity-60 transition-opacity" data-icon="arrow_back">arrow_back</span>
+<h1 class="font-h2 text-h2-mobile text-on-surface">个人注册</h1>
+</div>
+</header>
+<main class="pt-[64px] pb-[100px] px-page-margin">
+<!-- Hero Branding -->
+<div class="mb-space-xl text-center py-6">
+<div class="w-16 h-16 bg-primary-container text-on-primary rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: &quot;FILL&quot; 1;">person_add</span>
+</div>
+<h2 class="font-h1 text-h1-mobile mb-1">开启您的服务之旅</h2>
+<p class="text-secondary font-body-md">请填写您的真实个人信息，以便完成实名核验</p>
+</div>
+<!-- Form Section -->
+<div class="space-y-4">
+<!-- Name Input -->
+<div class="space-y-2">
+<label class="font-label-md text-on-surface-variant block ml-1">真实姓名</label>
+<div class="flex items-center bg-[#F8F9FA] border border-transparent rounded-xl px-4 py-3 gap-3 form-input-focus transition-all duration-200">
+<span class="material-symbols-outlined text-secondary" data-icon="person">person</span>
+<input class="bg-transparent border-none outline-none flex-1 text-on-surface font-body-lg placeholder:text-outline" placeholder="请输入您的姓名" type="text">
+</div>
+</div>
+<!-- Identity Number Input -->
+<div class="space-y-2">
+<label class="font-label-md text-on-surface-variant block ml-1">身份证号</label>
+<div class="flex items-center bg-[#F8F9FA] border border-transparent rounded-xl px-4 py-3 gap-3 form-input-focus transition-all duration-200">
+<span class="material-symbols-outlined text-secondary" data-icon="badge">badge</span>
+<input class="bg-transparent border-none outline-none flex-1 text-on-surface font-body-lg placeholder:text-outline" placeholder="请输入18位有效身份证号" type="text">
+</div>
+</div>
+<!-- Contact Number Input -->
+<div class="space-y-2">
+<label class="font-label-md text-on-surface-variant block ml-1">联系电话</label>
+<div class="flex items-center bg-[#F8F9FA] border border-transparent rounded-xl px-4 py-3 gap-3 form-input-focus transition-all duration-200"><span class="material-symbols-outlined text-secondary" data-icon="call">call</span>
+<input class="bg-transparent border-none outline-none flex-1 text-on-surface font-body-lg placeholder:text-outline" placeholder="请输入您的手机号码" type="tel">
+<button class="text-primary font-label-md px-4 py-1.5 rounded-xl border border-primary bg-transparent active:scale-95 active:opacity-80 transition-all duration-200 whitespace-nowrap">获取验证码</button></div>
+</div><div class="space-y-2">
+<label class="font-label-md text-on-surface-variant block ml-1">验证码</label>
+<div class="flex items-center bg-[#F8F9FA] border border-transparent rounded-xl px-4 py-3 gap-3 form-input-focus transition-all duration-200">
+<span class="material-symbols-outlined text-secondary" data-icon="verified_user">verified_user</span>
+<input class="bg-transparent border-none outline-none flex-1 text-on-surface font-body-lg placeholder:text-outline" placeholder="请输入6位验证码" type="number">
+</div>
+</div>
+<!-- Occupation Picker -->
+<div class="space-y-2">
+<label class="font-label-md text-on-surface-variant block ml-1">职业 / 所属行业</label>
+<button class="w-full flex items-center justify-between bg-[#F8F9FA] border border-transparent rounded-xl px-4 py-3 gap-3 form-input-focus transition-all duration-200 text-left" onclick="togglePicker()">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="work">work</span>
+<span class="text-outline font-body-lg" id="occupation-text">请选择您的所属行业</span>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-space-xl">
+<button class="w-full h-[48px] bg-primary text-on-primary rounded-xl font-h3 shadow-md active:scale-[0.98] active:opacity-90 transition-all duration-200 flex items-center justify-center gap-2">
+<span class="">提交注册</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="how_to_reg">how_to_reg</span>
+</button>
+</div>
+<!-- Footer Agreements -->
+<div class="mt-space-lg flex items-start gap-2 px-2">
+<div class="relative flex items-center justify-center mt-1">
+<input class="peer h-4 w-4 rounded border-outline text-primary focus:ring-primary" id="agreement" type="checkbox">
+</div>
+<label class="text-caption text-secondary" for="agreement">
+                我已阅读并同意 <span class="text-primary active:opacity-60">《用户服务协议》</span>、<span class="text-primary active:opacity-60">《隐私政策》</span> 以及 <span class="text-primary active:opacity-60">《实名认证授权声明》</span>，本人保证所填信息真实有效。
+            </label>
+</div>
+</main>
+<!-- Simple Bottom Navigation for context -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-[56px] px-2 pb-safe bg-surface border-t border-surface-variant z-50">
+<div class="flex flex-col items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">首页</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-md text-label-md">智能问答</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="domain">domain</span>
+<span class="font-label-md text-label-md">企业信息</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary font-semibold">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: &quot;FILL&quot; 1;">person</span>
+<span class="font-label-md text-label-md">我的</span>
+</div>
+</nav>
+<!-- Simple Selection Modal Placeholder -->
+<div class="fixed inset-0 bg-black/50 z-[100] hidden items-end transition-opacity duration-300" id="picker-modal">
+<div class="bg-surface w-full rounded-t-3xl p-6 transform transition-transform duration-300 translate-y-full" id="modal-content">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-h2 text-on-surface">选择行业</h3>
+<span class="material-symbols-outlined text-secondary cursor-pointer" data-icon="close" onclick="togglePicker()">close</span>
+</div>
+<div class="grid grid-cols-2 gap-3 mb-8">
+<div class="p-4 rounded-xl border border-surface-variant text-center active:bg-primary-container active:text-white transition-colors" onclick="selectIndustry('金融保险')">金融保险</div>
+<div class="p-4 rounded-xl border border-surface-variant text-center active:bg-primary-container active:text-white transition-colors" onclick="selectIndustry('互联网/技术')">互联网/技术</div>
+<div class="p-4 rounded-xl border border-surface-variant text-center active:bg-primary-container active:text-white transition-colors" onclick="selectIndustry('教育培训')">教育培训</div>
+<div class="p-4 rounded-xl border border-surface-variant text-center active:bg-primary-container active:text-white transition-colors" onclick="selectIndustry('医疗健康')">医疗健康</div>
+<div class="p-4 rounded-xl border border-surface-variant text-center active:bg-primary-container active:text-white transition-colors" onclick="selectIndustry('建筑房产')">建筑房产</div>
+<div class="p-4 rounded-xl border border-surface-variant text-center active:bg-primary-container active:text-white transition-colors" onclick="selectIndustry('其他行业')">其他行业</div>
+</div>
+</div>
+</div>
+<script>
+        function togglePicker() {
+            const modal = document.getElementById('picker-modal');
+            const content = document.getElementById('modal-content');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    content.classList.remove('translate-y-full');
+                }, 10);
+            } else {
+                content.classList.add('translate-y-full');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 300);
+            }
+        }
+
+        function selectIndustry(name) {
+            document.getElementById('occupation-text').innerText = name;
+            document.getElementById('occupation-text').classList.remove('text-outline');
+            document.getElementById('occupation-text').classList.add('text-on-surface');
+            togglePicker();
+        }
+    </script>
+
+
+</body></html>

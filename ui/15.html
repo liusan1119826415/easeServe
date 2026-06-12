@@ -1,0 +1,237 @@
+<!DOCTYPE html><html class="light" lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>选择专项客服 - 服务体系</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#005FB8",
+                        "on-primary": "#FFFFFF",
+                        "primary-container": "#D6E3FF",
+                        "on-primary-container": "#001B3E",
+                        secondary: "#565F71",
+                        "on-secondary": "#FFFFFF",
+                        surface: "#F9F9FF",
+                        "on-surface": "#191C20",
+                        "surface-variant": "#E0E2EC",
+                        "on-surface-variant": "#44474E",
+                        outline: "#74777F",
+                        "outline-variant": "#C4C6D0",
+                        "surface-container-lowest": "#FFFFFF",
+                        "inverse-surface": "#2E3135",
+                        "primary-fixed": "#D6E3FF",
+                        "secondary-fixed-dim": "#BEC6DC"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "margin-page": "1rem",
+                        "gutter-grid": "1rem"
+                    },
+                    fontFamily: {
+                        "headline": ["Public Sans", "sans-serif"],
+                        "display": ["Public Sans", "sans-serif"],
+                        "body": ["Public Sans", "sans-serif"],
+                        "label": ["Public Sans", "sans-serif"]
+                    },
+                    fontSize: {
+                        "h1": ["1.5rem", { lineHeight: "2rem", fontWeight: "800" }],
+                        "h2": ["1.125rem", { lineHeight: "1.5rem", fontWeight: "700" }],
+                        "label-sm": ["0.75rem", { lineHeight: "1rem", fontWeight: "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex items-center justify-between px-margin-page h-14">
+<div class="flex items-center gap-4">
+<button aria-label="返回" class="active:scale-95 transition-transform text-primary dark:text-primary-fixed">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-h2 text-h2 text-primary dark:text-primary-fixed">服务体系</h1>
+</div>
+<div class="flex items-center">
+<span class="font-h1 text-h1 text-primary dark:text-primary-fixed opacity-10">CORE</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 px-margin-page max-w-4xl mx-auto">
+<!-- Hero Section / Title -->
+<section class="mb-8">
+<h2 class="text-3xl font-extrabold tracking-tight text-on-surface mb-2">选择专项客服</h2>
+<p class="text-on-surface-variant max-w-md">为了为您提供更专业的服务，请选择您需要咨询的业务领域。</p>
+</section>
+<!-- Category Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+<!-- Category: Business/Industry -->
+<button class="group relative overflow-hidden glass-card p-6 rounded-xl flex flex-col items-start text-left transition-all duration-300 hover:shadow-xl hover:-translate-y-1 active:scale-95 border-l-4 border-primary" onclick="selectCategory('工商')">
+<div class="bg-primary-container p-3 rounded-lg mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">business_center</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">工商服务</h3>
+<p class="text-sm text-on-surface-variant">企业注册、变更、注销及年报等相关业务咨询。</p>
+<div class="mt-4 flex items-center text-primary font-semibold text-sm">
+                    立即接入 <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</div>
+<div class="absolute top-0 right-0 p-2 opacity-5">
+<span class="material-symbols-outlined text-7xl">business</span>
+</div>
+</button>
+<!-- Category: Taxation -->
+<button class="group relative overflow-hidden glass-card p-6 rounded-xl flex flex-col items-start text-left transition-all duration-300 hover:shadow-xl hover:-translate-y-1 active:scale-95 border-l-4 border-secondary" onclick="selectCategory('税务')">
+<div class="bg-surface-variant p-3 rounded-lg mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary text-3xl">payments</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">税务服务</h3>
+<p class="text-sm text-on-surface-variant">税务申报、发票申领、税收优惠政策解读及筹划。</p>
+<div class="mt-4 flex items-center text-secondary font-semibold text-sm">
+                    立即接入 <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</div>
+<div class="absolute top-0 right-0 p-2 opacity-5">
+<span class="material-symbols-outlined text-7xl">account_balance_wallet</span>
+</div>
+</button>
+<!-- Category: Labor Relations -->
+<button class="group relative overflow-hidden glass-card p-6 rounded-xl flex flex-col items-start text-left transition-all duration-300 hover:shadow-xl hover:-translate-y-1 active:scale-95 border-l-4 border-outline" onclick="selectCategory('劳动关系')">
+<div class="bg-surface-variant p-3 rounded-lg mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl">groups</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">劳动关系</h3>
+<p class="text-sm text-on-surface-variant">入职合同、社保公积金、劳资纠纷及离职补偿咨询。</p>
+<div class="mt-4 flex items-center text-on-surface-variant font-semibold text-sm">
+                    立即接入 <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</div>
+<div class="absolute top-0 right-0 p-2 opacity-5">
+<span class="material-symbols-outlined text-7xl">badge</span>
+</div>
+</button>
+<!-- Category: Legal Affairs -->
+<button class="group relative overflow-hidden glass-card p-6 rounded-xl flex flex-col items-start text-left transition-all duration-300 hover:shadow-xl hover:-translate-y-1 active:scale-95 border-l-4 border-primary" onclick="selectCategory('法务')">
+<div class="bg-primary-container p-3 rounded-lg mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">gavel</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">法律事务</h3>
+<p class="text-sm text-on-surface-variant">合同审核、知识产权保护、企业合规及法律风险把控。</p>
+<div class="mt-4 flex items-center text-primary font-semibold text-sm">
+                    立即接入 <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</div>
+<div class="absolute top-0 right-0 p-2 opacity-5">
+<span class="material-symbols-outlined text-7xl">policy</span>
+</div>
+</button>
+</div>
+<!-- Support Visual -->
+<div class="rounded-2xl overflow-hidden relative h-48 mb-8 group">
+<img alt="Corporate Professional Service" class="w-full h-full object-cover grayscale-[0.2] group-hover:scale-105 transition-transform duration-700" data-alt="A clean, modern corporate office environment with bright, expansive windows overlooking a city skyline. The interior features minimalist furniture in cool grey and blue tones, reflecting a professional and trustworthy atmosphere. Soft natural light illuminates a professional collaborative workspace with high-end tech integration. The mood is calm, expert, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEM9UDxD-g78wo2OE4uSVugCy1DqDk6bML530f0PuW0BjNIPL_T1dAuubmrEnOsUij79XiHxKFsAGvJAR2wzPG7Ph1ztVwB22rMj4hZMSTQ7OwXn7Ow44VQFetDv_6PHKd7aMHxRw-es2CddGt8vJtykDqtShpVHqkG2ldlIPOyab7C4bQj9vf9LumRDt3ws1lAzJyDgZ3vkTI9bBHJAASrbRF0sEtBwNhMSt5OnTrfTtfr9vy228Mae6FZJFNw9D8XzcVF9hRbHo6">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent flex items-center px-8">
+<div class="text-white">
+<p class="text-sm font-label opacity-80 uppercase tracking-widest mb-1">Expert Support</p>
+<h4 class="text-2xl font-bold">专业团队 实时在线</h4>
+<p class="text-xs opacity-90 mt-2 max-w-[200px]">您的每一个问题，都有资深专家为您详细解答。</p>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant dark:border-outline flex justify-around items-center h-16 px-gutter-grid">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">首页</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-semibold hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+<span class="font-label-sm text-label-sm">智能问答</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">business_center</span>
+<span class="font-label-sm text-label-sm">企业信息</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim hover:bg-surface-variant/50 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">我的</span>
+</a>
+</nav>
+<script>
+        function selectCategory(category) {
+            // Animation and Transition Mockup
+            const main = document.querySelector('main');
+            main.style.opacity = '0.5';
+            main.style.pointerEvents = 'none';
+            
+            // Interaction Feedback
+            console.log(`Connecting to ${category} customer service...`);
+            
+            // Creating a toast notification
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 bg-inverse-surface text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 z-50 animate-bounce';
+            toast.innerHTML = `
+                <span class="material-symbols-outlined text-primary-container">support_agent</span>
+                <span>正在为您连接 [${category}] 专家客服...</span>
+            `;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('animate-bounce');
+                toast.innerHTML = `
+                    <span class="material-symbols-outlined text-green-400">check_circle</span>
+                    <span>已成功接入，正在进入聊天室</span>
+                `;
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 500);
+                    main.style.opacity = '1';
+                    main.style.pointerEvents = 'auto';
+                }, 1500);
+            }, 2000);
+        }
+
+        // Atmosphere Effect: Light floating elements in background
+        document.addEventListener('DOMContentLoaded', () => {
+            const bgContainer = document.createElement('div');
+            bgContainer.className = 'fixed inset-0 pointer-events-none -z-10 overflow-hidden';
+            for (let i = 0; i < 5; i++) {
+                const blob = document.createElement('div');
+                blob.className = 'absolute rounded-full blur-[120px] opacity-20 bg-primary';
+                const size = Math.random() * 400 + 200;
+                blob.style.width = `${size}px`;
+                blob.style.height = `${size}px`;
+                blob.style.top = `${Math.random() * 100}%`;
+                blob.style.left = `${Math.random() * 100}%`;
+                blob.style.transition = 'all 20s linear';
+                bgContainer.appendChild(blob);
+                
+                setInterval(() => {
+                    blob.style.top = `${Math.random() * 100}%`;
+                    blob.style.left = `${Math.random() * 100}%`;
+                }, 20000);
+            }
+            document.body.appendChild(bgContainer);
+        });
+    </script>
+</body></html>
