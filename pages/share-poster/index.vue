@@ -51,7 +51,7 @@ export default {
   flex-direction: column;
 }
 .poster-container {
-  flex: 1;
+  flex: 0.5;
   display: flex;
   align-items: center;
   justify-content: center;
