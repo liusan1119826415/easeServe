@@ -1,4 +1,8 @@
 {
+	"easycom": {
+		"autoscan": true,
+		"custom": {}
+	},
 	"pages": [
 		{
 			"path": "pages/index/index",
@@ -11,9 +15,7 @@
 		{
 			"path": "pages/qa/index",
 			"style": {
-				"navigationBarTitleText": "智能问答",
-				"navigationBarBackgroundColor": "#ffffff",
-				"navigationBarTextStyle": "black"
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -21,6 +23,14 @@
 			"style": {
 				"navigationBarTitleText": "人力资源",
 				"navigationBarBackgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/service-detail/index",
+			"style": {
+				"navigationBarTitleText": "服务详情",
+				"navigationBarBackgroundColor": "#faf9f9",
 				"navigationBarTextStyle": "black"
 			}
 		},
@@ -35,7 +45,7 @@
 		{
 			"path": "pages/flow-detail/index",
 			"style": {
-				"navigationBarTitleText": "招聘管理流程图解",
+				"navigationBarTitleText": "流程详情",
 				"navigationBarBackgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}
@@ -44,6 +54,14 @@
 			"path": "pages/about/index",
 			"style": {
 				"navigationBarTitleText": "关于我们",
+				"navigationBarBackgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/company-info/index",
+			"style": {
+				"navigationBarTitleText": "企业信息",
 				"navigationBarBackgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}
@@ -144,6 +162,14 @@
 			}
 		},
 		{
+			"path": "pages/history/index",
+			"style": {
+				"navigationBarTitleText": "浏览历史",
+				"navigationBarBackgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
 			"path": "pages/personal-register/index",
 			"style": {
 				"navigationBarTitleText": "个人注册",
@@ -155,6 +181,46 @@
 			"path": "pages/membership/index",
 			"style": {
 				"navigationBarTitleText": "会员方案",
+				"navigationBarBackgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/membership/gift-codes",
+			"style": {
+				"navigationBarTitleText": "我的礼品码",
+				"navigationBarBackgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/download/index",
+			"style": {
+				"navigationBarTitleText": "模板下载",
+				"navigationBarBackgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/questionnaire/index",
+			"style": {
+				"navigationBarTitleText": "自测问卷",
+				"navigationBarBackgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/report/index",
+			"style": {
+				"navigationBarTitleText": "评估报告",
+				"navigationBarBackgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/survey/index",
+			"style": {
+				"navigationBarTitleText": "在线问卷",
 				"navigationBarBackgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}

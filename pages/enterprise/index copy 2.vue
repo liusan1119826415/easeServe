@@ -10,7 +10,11 @@
 
     <!-- 头图区域 -->
     <view class="hero-section">
-      <image class="hero-img" src="/static/enterprise.png" mode="aspectFill" />
+      <image
+        class="hero-img"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoT0C-bpVSldf0ojf0EXkoxgsBkK8DSNBEz1Oe0zNJQ8hhbTXT8FnXH4BsJtjAd-YCIxPjj3DIfrXG5DuONnl2KDtN8bdSsuZZOfytAp5MKrm4WOB8jIxrddj5hiv1VFUpMCbM6twRMJMYzn-dRrnvkxuUaJQwCT77ixUquUuTQ9x4a1HdH_vdkTGX7z5D_FnaJhflPFxjSJGW60NnN3YFkOZK0irzhHnZZnIOMluqVMDiF15CyH1pfL0T6gLxMx4fxNNNSHf_QXad"
+        mode="aspectFill"
+      />
       <view class="hero-overlay"></view>
     </view>
 
@@ -36,7 +40,7 @@
           >
             <view class="item-info">
               <text class="item-name">{{ item.name }}</text>
-              <text class="item-desc">包含{{ (item.contentCount || 0) }}项内容</text>
+              <text class="item-desc">包含{{ (item.children && item.children.length) || 0 }}项子流程</text>
             </view>
             <text class="item-arrow">›</text>
           </view>
@@ -67,19 +71,20 @@ import { getCategories } from '@/api/index.js'
 export default {
   data() {
     return {
-      categoryId: null,
       groups: [],
-      pageTitle: '企业服务',
+      pageTitle: '人力资源',
       loaded: false,
       groupColors: ['#EBF4FF', '#F0F7FF', '#F5FAFF', '#EBF4FF', '#F0F7FF']
     }
   },
   onLoad(options) {
-    this.categoryId = options.categoryId ? Number(options.categoryId) : null
-    this.loadServices()
+    const categoryName = options.name || '人力资源'
+    this.pageTitle = categoryName
+    uni.setNavigationBarTitle({ title: categoryName })
+    this.loadServices(categoryName)
   },
   methods: {
-    async loadServices() {
+    async loadServices(categoryName) {
       try {
         const categories = await getCategories()
         if (!categories || categories.length === 0) {
@@ -87,17 +92,11 @@ export default {
           return
         }
 
-        // 根据 categoryId 查找匹配的父分类
-        const parent = this.categoryId
-          ? categories.find(c => c.id === this.categoryId)
-          : null
-
-        if (parent) {
-          // 找到匹配分类，用分类名设置标题
-          this.pageTitle = parent.name
-          uni.setNavigationBarTitle({ title: parent.name })
-          // 显示该分类的子级作为分组
-          this.groups = (parent.children || []).map(cat => ({
+        // 查找匹配的父分类
+        const parent = categories.find(c => c.name === categoryName)
+        if (!parent) {
+          // 没找到匹配，显示所有一级分类
+          this.groups = categories.map(cat => ({
             id: cat.id,
             name: cat.name,
             emoji: cat.emoji || '',
@@ -106,8 +105,8 @@ export default {
             children: cat.children || []
           }))
         } else {
-          // 未找到匹配或无 categoryId，显示所有一级分类
-          this.groups = categories.map(cat => ({
+          // 显示匹配分类的子级作为分组
+          this.groups = (parent.children || []).map(cat => ({
             id: cat.id,
             name: cat.name,
             emoji: cat.emoji || '',
@@ -126,7 +125,7 @@ export default {
     goSubCategory(item) {
       // 跳转到子分类页面（23.html风格），展示该分类下的3级菜单
       uni.navigateTo({
-        url: '/pages/service-detail/index?categoryId=' + item.id
+        url: '/pages/service-detail/index?categoryId=' + item.id + '&categoryName=' + encodeURIComponent(item.name)
       })
     },
 
@@ -261,7 +260,7 @@ export default {
   margin-top: 6rpx;
 }
 .item-arrow {
-  font-size: 48rpx;
+  font-size: 36rpx;
   color: #c2c6d8;
   font-weight: 300;
 }

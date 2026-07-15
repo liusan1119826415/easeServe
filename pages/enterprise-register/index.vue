@@ -1,21 +1,21 @@
 <template>
   <view class="page">
     <!-- 顶部导航 -->
-    <view class="nav-bar">
+    <!-- <view class="nav-bar">
       <view class="nav-left" @tap="goBack">
         <text class="nav-icon">←</text>
       </view>
-      <text class="nav-title">服务体系</text>
+      <text class="nav-title">{{ isEdit ? '完善企业资料' : '服务体系' }}</text>
       <view class="nav-right">
         <text class="more-icon">⋮</text>
       </view>
-    </view>
+    </view> -->
 
     <!-- 主内容 -->
     <view class="main">
       <view class="form-header">
-        <text class="form-title">企业注册资料填写</text>
-        <text class="form-desc">请核对您的企业证照信息，准确填写以下各项内容以完成入驻申请。</text>
+        <text class="form-title">{{ isEdit ? '企业资料完善' : '企业注册资料填写' }}</text>
+        <text class="form-desc">{{ isEdit ? '请核对并更新您的企业证照信息' : '请核对您的企业证照信息，准确填写以下各项内容以完成入驻申请。' }}</text>
       </view>
 
       <!-- 表单 -->
@@ -40,22 +40,19 @@
 
         <!-- 联系方式 -->
         <view class="form-group">
-          <text class="form-label">联系人联系方式</text>
-          <view class="contact-row">
-            <view class="input-wrap flex-1">
-              <input class="form-input" type="number" v-model="contactPhone" placeholder="请输入手机号或联系电话" />
-              <text class="input-suffix">📞</text>
-            </view>
-            <view class="send-code-btn" @tap="sendCode">
-              <text class="send-code-text">{{ codeCountdown > 0 ? codeCountdown + 's' : '发送验证码' }}</text>
-            </view>
+          <text class="form-label">联系人姓名</text>
+          <view class="input-wrap">
+            <input class="form-input" v-model="contactName" placeholder="请输入联系人姓名" />
+            <text class="input-suffix">👤</text>
           </view>
-          <view class="form-group" style="margin-top: 16px;">
-            <text class="form-label">验证码</text>
-            <view class="input-wrap">
-              <input class="form-input" type="number" v-model="verifyCode" placeholder="请输入6位验证码" maxlength="6" />
-              <text class="input-suffix">🔓</text>
-            </view>
+        </view>
+
+        <!-- 联系电话 -->
+        <view class="form-group">
+          <text class="form-label">联系电话</text>
+          <view class="input-wrap">
+            <input class="form-input" type="number" v-model="contactPhone" placeholder="请输入手机号" maxlength="11" />
+            <text class="input-suffix">📞</text>
           </view>
         </view>
       </view>
@@ -73,49 +70,95 @@
       <!-- 提交按钮 -->
       <view class="submit-section">
         <view class="submit-btn" @tap="submitForm">
-          <text class="submit-text">提交注册</text>
+          <text class="submit-text">{{ isEdit ? '保存修改' : '提交注册' }}</text>
           <text class="submit-arrow">→</text>
         </view>
-        <text class="submit-tip">点击提交即表示您已阅读并同意 <text class="link">《企业服务条款》</text> 与 <text class="link">《隐私声明》</text></text>
+        <text class="submit-tip" v-if="!isEdit">点击提交即表示您已阅读并同意 <text class="link">《企业服务条款》</text> 与 <text class="link">《隐私声明》</text></text>
       </view>
     </view>
   </view>
 </template>
 
 <script>
+import { registerEnterprise } from '@/api/index.js'
+
 export default {
   data() {
     return {
+      isEdit: false,
       socialCode: '',
       enterpriseName: '',
+      contactName: '',
       contactPhone: '',
-      verifyCode: '',
-      codeCountdown: 0,
-      timer: null
+      submitting: false
+    }
+  },
+  onLoad(options) {
+    // 判断是否为编辑模式
+    if (options && options.mode === 'edit') {
+      this.isEdit = true
+    }
+    // 动态设置导航栏标题
+    uni.setNavigationBarTitle({
+      title: this.isEdit ? '完善企业资料' : '企业注册'
+    })
+    // 预填已登录用户的手机号
+    try {
+      const userInfo = JSON.parse(uni.getStorageSync('userInfo') || '{}')
+      this.contactPhone = userInfo.phone || ''
+    } catch (e) {}
+    // 编辑模式预填已有企业信息
+    if (this.isEdit) {
+      try {
+        const ent = JSON.parse(uni.getStorageSync('enterpriseInfo') || '{}')
+        if (ent.name) this.enterpriseName = ent.name
+        if (ent.creditCode) this.socialCode = ent.creditCode
+        if (ent.contactName) this.contactName = ent.contactName
+        if (ent.contactPhone) this.contactPhone = ent.contactPhone
+      } catch (e) {}
     }
   },
   methods: {
     goBack() { uni.navigateBack() },
-    sendCode() {
-      if (this.codeCountdown > 0) return
-      if (!this.contactPhone) {
-        uni.showToast({ title: '请输入手机号', icon: 'none' })
+    async submitForm() {
+      if (!this.socialCode) {
+        uni.showToast({ title: '请输入统一社会信用代码', icon: 'none' })
         return
       }
-      this.codeCountdown = 60
-      this.timer = setInterval(() => {
-        this.codeCountdown--
-        if (this.codeCountdown <= 0) clearInterval(this.timer)
-      }, 1000)
-      uni.showToast({ title: '验证码已发送', icon: 'success' })
-    },
-    submitForm() {
-      if (!this.socialCode || !this.enterpriseName || !this.contactPhone || !this.verifyCode) {
-        uni.showToast({ title: '请填写完整信息', icon: 'none' })
+      if (!this.enterpriseName) {
+        uni.showToast({ title: '请输入企业名称', icon: 'none' })
         return
       }
-      uni.showToast({ title: '提交成功，审核中', icon: 'success' })
-      setTimeout(() => { uni.navigateBack() }, 1500)
+      if (!this.contactName) {
+        uni.showToast({ title: '请输入联系人姓名', icon: 'none' })
+        return
+      }
+      if (!this.contactPhone || this.contactPhone.length !== 11) {
+        uni.showToast({ title: '请输入正确的手机号', icon: 'none' })
+        return
+      }
+      if (this.submitting) return
+      this.submitting = true
+      try {
+        await registerEnterprise({
+          creditCode: this.socialCode,
+          name: this.enterpriseName,
+          contactName: this.contactName,
+          contactPhone: this.contactPhone
+        })
+        uni.showToast({ title: this.isEdit ? '保存成功' : '提交成功，审核中', icon: 'success' })
+        setTimeout(() => {
+          if (this.isEdit) {
+            uni.navigateBack()
+          } else {
+            uni.reLaunch({ url: '/pages/index/index?newUser=1' })
+          }
+        }, 1500)
+      } catch (e) {
+        // 错误已在 request 拦截器中提示
+      } finally {
+        this.submitting = false
+      }
     }
   }
 }

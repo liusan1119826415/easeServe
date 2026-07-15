@@ -28,16 +28,6 @@
           <text class="btn-outline-text">立即注册</text>
         </view>
       </view>
-
-      <!-- 协议 -->
-      <view class="agreement-section">
-        <view class="agreement-row" @tap="toggleAgree">
-          <view class="checkbox" :class="{ checked: agreed }">
-            <text v-if="agreed" class="check-mark">✓</text>
-          </view>
-          <text class="agreement-text">我已阅读并同意 <text class="link">《用户协议》</text>、<text class="link">《隐私政策》</text> 以及授权该应用使用我的基本信息。</text>
-        </view>
-      </view>
     </view>
   </view>
 </template>
@@ -45,22 +35,20 @@
 <script>
 export default {
   data() {
-    return { agreed: false }
+    return {}
+  },
+  onShow() {
+    // 已登录用户直接跳转首页
+    const token = uni.getStorageSync('token')
+    if (token) {
+      uni.reLaunch({ url: '/pages/index/index' })
+    }
   },
   methods: {
-    toggleAgree() { this.agreed = !this.agreed },
     goLogin() {
-      if (!this.agreed) {
-        uni.showToast({ title: '请先同意用户协议', icon: 'none' })
-        return
-      }
       uni.navigateTo({ url: '/pages/login/index' })
     },
     goRegister() {
-      if (!this.agreed) {
-        uni.showToast({ title: '请先同意用户协议', icon: 'none' })
-        return
-      }
       uni.navigateTo({ url: '/pages/register-type/index' })
     }
   }
@@ -89,7 +77,7 @@ export default {
 .hero-bg { width: 100%; height: 100%; background: linear-gradient(135deg, #e8f0fe 0%, #c2d9ff 100%); display: flex; align-items: center; justify-content: center; }
 .hero-text-deco { font-size: 80px; }
 
-.btn-group { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+.btn-group { display: flex; flex-direction: column; gap: 16px; margin-top: auto; margin-bottom: 60px; }
 .btn-primary {
   height: 48px; border-radius: 12px; background: var(--color-primary);
   display: flex; align-items: center; justify-content: center;
@@ -102,15 +90,4 @@ export default {
   display: flex; align-items: center; justify-content: center;
 }
 .btn-outline-text { color: var(--color-primary); font-size: 16px; font-weight: 600; }
-
-.agreement-section { margin-top: auto; padding-bottom: 40px; }
-.agreement-row { display: flex; align-items: flex-start; gap: 12px; }
-.checkbox {
-  width: 20px; height: 20px; border: 2px solid #ccc; border-radius: 4px;
-  display: flex; align-items: center; justify-content: center; margin-top: 2px;
-}
-.checkbox.checked { background: var(--color-primary); border-color: var(--color-primary); }
-.check-mark { color: #fff; font-size: 14px; }
-.agreement-text { font-size: 12px; color: #999; line-height: 1.6; }
-.link { color: var(--color-primary); font-weight: 500; }
 </style>

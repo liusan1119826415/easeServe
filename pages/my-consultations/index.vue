@@ -1,13 +1,13 @@
 <template>
   <view class="page">
     <!-- 顶部导航 -->
-    <view class="nav-bar">
+    <!-- <view class="nav-bar">
       <view class="nav-left" @tap="goBack">
         <text class="nav-icon">←</text>
       </view>
       <text class="nav-title">我的咨询</text>
       <view class="nav-right"></view>
-    </view>
+    </view> -->
 
     <!-- 主内容 -->
     <view class="main">
@@ -100,7 +100,7 @@ export default {
 .nav-icon { font-size: 20px; color: var(--color-primary); }
 .nav-title { font-size: 18px; font-weight: 600; color: var(--color-primary); position: absolute; left: 50%; transform: translateX(-50%); }
 .nav-right { width: 24px; }
-.main { padding: 72px 16px 32px; }
+.main { padding: 20px 16px 32px; }
 
 .search-bar { display: flex; gap: 12px; align-items: center; margin-bottom: 24px; }
 .search-input {

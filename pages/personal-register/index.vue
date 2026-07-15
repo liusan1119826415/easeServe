@@ -1,12 +1,12 @@
 <template>
   <view class="page">
     <!-- 顶部导航 -->
-    <view class="nav-bar">
+    <!-- <view class="nav-bar">
       <view class="nav-left" @tap="goBack">
         <text class="nav-icon">←</text>
       </view>
-      <text class="nav-title">个人注册</text>
-    </view>
+      <text class="nav-title">{{ isEdit ? '完善个人资料' : '个人注册' }}</text>
+    </view> -->
 
     <!-- 主内容 -->
     <view class="main">
@@ -15,48 +15,28 @@
         <view class="hero-icon-wrap">
           <text class="hero-icon">👤</text>
         </view>
-        <text class="hero-title">开启您的服务之旅</text>
-        <text class="hero-desc">请填写您的真实个人信息，以便完成实名核验</text>
+        <text class="hero-title">{{ isEdit ? '完善您的个人信息' : '开启您的服务之旅' }}</text>
+        <text class="hero-desc">{{ isEdit ? '补充以下信息，让我们为您提供更精准的服务' : '请填写您的真实个人信息，以便完成实名核验' }}</text>
+      </view>
+
+      <!-- 头像编辑 -->
+      <view class="avatar-section" v-if="isEdit">
+        <view class="avatar-edit-wrap" @tap="chooseAvatar">
+          <image class="avatar-preview" :src="avatarUrl || 'https://pic1.zhimg.com/v2-7d63e24e29ff2f3d8b7c6e7a4e5b5c5d_r.jpg'" mode="aspectFill" />
+          <view class="avatar-edit-mask">
+            <text class="avatar-edit-text">更换头像</text>
+          </view>
+        </view>
       </view>
 
       <!-- 表单 -->
       <view class="form-section">
-        <!-- 姓名 -->
-        <view class="form-group">
-          <text class="form-label">真实姓名</text>
-          <view class="input-row" :class="{ focused: focusField === 'name' }">
-            <text class="input-icon">👤</text>
-            <input class="form-input" v-model="form.name" placeholder="请输入您的姓名" @focus="focusField='name'" @blur="focusField=''" />
-          </view>
-        </view>
-
-        <!-- 身份证号 -->
-        <view class="form-group">
-          <text class="form-label">身份证号</text>
-          <view class="input-row" :class="{ focused: focusField === 'idCard' }">
-            <text class="input-icon">🪪</text>
-            <input class="form-input" v-model="form.idCard" placeholder="请输入18位有效身份证号" maxlength="18" @focus="focusField='idCard'" @blur="focusField=''" />
-          </view>
-        </view>
-
-        <!-- 联系电话 -->
+        <!-- 联系电话（已登录，只读展示） -->
         <view class="form-group">
           <text class="form-label">联系电话</text>
-          <view class="input-row" :class="{ focused: focusField === 'phone' }">
+          <view class="input-row">
             <text class="input-icon">📞</text>
-            <input class="form-input" type="number" v-model="form.phone" placeholder="请输入您的手机号码" maxlength="11" @focus="focusField='phone'" @blur="focusField=''" />
-            <view class="code-btn-sm" @tap="getCode">
-              <text class="code-btn-sm-text">{{ countdown > 0 ? countdown + 's' : '获取验证码' }}</text>
-            </view>
-          </view>
-        </view>
-
-        <!-- 验证码 -->
-        <view class="form-group">
-          <text class="form-label">验证码</text>
-          <view class="input-row" :class="{ focused: focusField === 'code' }">
-            <text class="input-icon">🛡️</text>
-            <input class="form-input" type="number" v-model="form.code" placeholder="请输入6位验证码" maxlength="6" @focus="focusField='code'" @blur="focusField=''" />
+            <text class="form-input phone-display">{{ userPhone || '未绑定' }}</text>
           </view>
         </view>
 
@@ -73,12 +53,12 @@
 
       <!-- 提交 -->
       <view class="submit-btn" @tap="submitForm">
-        <text class="submit-text">提交注册</text>
-        <text class="submit-icon">✓</text>
+        <text class="submit-text">{{ isEdit ? '保存修改' : '提交注册' }}</text>
+        <text class="submit-icon">{{ isEdit ? '✓' : '✓' }}</text>
       </view>
 
-      <!-- 协议 -->
-      <view class="agreement-row" @tap="agreed = !agreed">
+      <!-- 协议（仅注册模式显示） -->
+      <view class="agreement-row" v-if="!isEdit" @tap="agreed = !agreed">
         <view class="checkbox" :class="{ checked: agreed }">
           <text v-if="agreed" class="check-mark">✓</text>
         </view>
@@ -104,48 +84,99 @@
 </template>
 
 <script>
+import { updateProfile, uploadFile } from '@/api/index.js'
+
 export default {
   data() {
     return {
+      isEdit: false,
       focusField: '',
       agreed: false,
       showPicker: false,
-      countdown: 0,
-      timer: null,
-      form: { name: '', idCard: '', phone: '', code: '', industry: '' },
+      submitting: false,
+      userPhone: '',
+      avatarUrl: '',
+      form: { industry: '' },
       industries: ['金融保险', '互联网/技术', '教育培训', '医疗健康', '建筑房产', '其他行业']
     }
   },
+  onLoad(options) {
+    // 判断是否为编辑模式
+    if (options && options.mode === 'edit') {
+      this.isEdit = true
+    }
+    // 从 storage 读取已登录用户信息
+    try {
+      const userInfo = JSON.parse(uni.getStorageSync('userInfo') || '{}')
+      this.userPhone = userInfo.phone || ''
+      // 编辑模式预填已有资料
+      if (this.isEdit) {
+        this.form.industry = userInfo.occupation || ''
+        this.avatarUrl = userInfo.avatar || ''
+        this.agreed = true
+      }
+    } catch (e) {}
+  },
   methods: {
     goBack() { uni.navigateBack() },
-    getCode() {
-      if (this.countdown > 0) return
-      if (!this.form.phone || this.form.phone.length !== 11) {
-        uni.showToast({ title: '请输入手机号', icon: 'none' })
-        return
-      }
-      this.countdown = 60
-      this.timer = setInterval(() => {
-        this.countdown--
-        if (this.countdown <= 0) clearInterval(this.timer)
-      }, 1000)
-      uni.showToast({ title: '验证码已发送', icon: 'success' })
+    chooseAvatar() {
+      uni.chooseImage({
+        count: 1,
+        sizeType: ['compressed'],
+        sourceType: ['album', 'camera'],
+        success: async (res) => {
+          const tempPath = res.tempFilePaths[0]
+          this.avatarUrl = tempPath // 先预览
+          uni.showLoading({ title: '上传中...' })
+          try {
+            const uploadRes = await uploadFile(tempPath, 'avatar')
+            this.avatarUrl = uploadRes.fileUrl
+            // 立即更新头像到服务器
+            await updateProfile({ avatar: uploadRes.fileUrl })
+            // 更新本地缓存
+            try {
+              const cached = JSON.parse(uni.getStorageSync('userInfo') || '{}')
+              cached.avatar = uploadRes.fileUrl
+              uni.setStorageSync('userInfo', JSON.stringify(cached))
+            } catch (e) {}
+            uni.showToast({ title: '头像更新成功', icon: 'success' })
+          } catch (e) {
+            uni.showToast({ title: '上传失败', icon: 'none' })
+          } finally {
+            uni.hideLoading()
+          }
+        }
+      })
     },
     selectIndustry(name) {
       this.form.industry = name
       this.showPicker = false
     },
-    submitForm() {
-      if (!this.form.name || !this.form.idCard || !this.form.phone || !this.form.code || !this.form.industry) {
-        uni.showToast({ title: '请填写完整信息', icon: 'none' })
-        return
-      }
-      if (!this.agreed) {
+    async submitForm() {
+      if (!this.isEdit && !this.agreed) {
         uni.showToast({ title: '请同意协议', icon: 'none' })
         return
       }
-      uni.showToast({ title: '注册成功', icon: 'success' })
-      setTimeout(() => { uni.switchTab({ url: '/pages/index/index' }) }, 1500)
+      if (this.submitting) return
+      this.submitting = true
+      try {
+        // 如果选了行业，更新到个人资料
+        if (this.form.industry) {
+          await updateProfile({ occupation: this.form.industry })
+        }
+        uni.showToast({ title: this.isEdit ? '保存成功' : '注册成功', icon: 'success' })
+        setTimeout(() => {
+          if (this.isEdit) {
+            uni.navigateBack()
+          } else {
+            uni.reLaunch({ url: '/pages/index/index?newUser=1' })
+          }
+        }, 1000)
+      } catch (e) {
+        // 错误已在 request 拦截器中提示
+      } finally {
+        this.submitting = false
+      }
     }
   }
 }
@@ -172,6 +203,18 @@ export default {
 .hero-title { font-size: 24px; font-weight: 600; color: var(--color-on-surface); display: block; margin-bottom: 4px; }
 .hero-desc { font-size: 14px; color: var(--color-secondary); }
 
+.avatar-section { display: flex; justify-content: center; margin-bottom: 24px; }
+.avatar-edit-wrap {
+  position: relative; width: 96px; height: 96px; border-radius: 50%; overflow: hidden;
+  border: 3px solid var(--color-primary-container); box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.avatar-preview { width: 100%; height: 100%; }
+.avatar-edit-mask {
+  position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+  display: flex; align-items: center; justify-content: center;
+}
+.avatar-edit-text { color: #fff; font-size: 12px; font-weight: 500; }
+
 .form-section { display: flex; flex-direction: column; gap: 16px; }
 .form-group { }
 .form-label { font-size: 12px; font-weight: 500; color: var(--color-on-surface-variant); display: block; margin-bottom: 8px; padding: 0 4px; }
@@ -182,6 +225,7 @@ export default {
 .input-row.focused { border-color: #1e6fff; background: #fff; }
 .input-icon { font-size: 20px; }
 .form-input { background: transparent; border: none; font-size: 16px; flex: 1; color: var(--color-on-surface); }
+.phone-display { font-size: 16px; color: var(--color-on-surface-variant); letter-spacing: 1px; }
 
 .code-btn-sm { padding: 6px 16px; border: 1px solid var(--color-primary); border-radius: 12px; }
 .code-btn-sm-text { font-size: 12px; color: var(--color-primary); font-weight: 500; white-space: nowrap; }

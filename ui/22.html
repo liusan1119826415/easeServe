@@ -1,0 +1,259 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>人力资源 - 服务目录</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#146bfb",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#727787",
+                        "primary": "#0053cd",
+                        "on-surface": "#1b1c1c",
+                        "surface-variant": "#e3e2e2",
+                        "secondary": "#5b5f65",
+                        "background": "#faf9f9",
+                        "on-surface-variant": "#424655",
+                        "outline-variant": "#c2c6d8",
+                        "surface": "#faf9f9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "page-margin": "16px",
+                        "space-md": "16px",
+                        "space-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "h2": ["Plus Jakarta Sans"],
+                        "h3": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #faf9f9;
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-group-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+        }
+        .list-item-active:active {
+            background-color: #f5f5f5;
+            transform: scale(0.98);
+        }
+        .custom-safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="flex items-center px-page-margin h-[48px] w-full z-50 sticky top-0 bg-surface border-b border-surface-variant">
+<div class="flex items-center gap-4 w-full">
+<button class="active:bg-surface-container-high transition-colors p-1 rounded-full -ml-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-[#1E6FFF]">arrow_back</span>
+</button>
+<h1 class="font-h2 text-[20px] text-[#1E6FFF] font-bold">人力资源</h1>
+</div>
+</header>
+<main class="px-page-margin py-space-md space-y-6 pb-24">
+<!-- Visual Header -->
+<section>
+<div class="relative h-40 w-full rounded-xl overflow-hidden mb-4">
+<img alt="Human Resources Concept" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoT0C-bpVSldf0ojf0EXkoxgsBkK8DSNBEz1Oe0zNJQ8hhbTXT8FnXH4BsJtjAd-YCIxPjj3DIfrXG5DuONnl2KDtN8bdSsuZZOfytAp5MKrm4WOB8jIxrddj5hiv1VFUpMCbM6twRMJMYzn-dRrnvkxuUaJQwCT77ixUquUuTQ9x4a1HdH_vdkTGX7z5D_FnaJhflPFxjSJGW60NnN3YFkOZK0irzhHnZZnIOMluqVMDiF15CyH1pfL0T6gLxMx4fxNNNSHf_QXad">
+<div class="absolute inset-0 bg-gradient-to-r from-[#1E6FFF]/20 to-transparent"></div>
+</div>
+<p class="text-sm text-on-surface-variant">为您提供全方位的人力资源管理解决方案，助力企业高效运营。</p>
+</section>
+<!-- Group 1: 用工管理体系 -->
+<section class="rounded-xl overflow-hidden bg-[#EBF4FF] p-4 card-group-shadow">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-[#1E6FFF] font-h3 text-lg font-bold">用工管理体系</h2>
+</div>
+<div class="space-y-3">
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<div class="flex flex-col">
+<span class="text-on-surface font-semibold">招聘入职板块</span>
+<span class="text-xs text-on-surface-variant">包含4项子流程</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<div class="flex flex-col">
+<span class="text-on-surface font-semibold">劳动合同管理板块</span>
+<span class="text-xs text-on-surface-variant">包含4项子流程</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<div class="flex flex-col">
+<span class="text-on-surface font-semibold">薪酬与考勤管理板块</span>
+<span class="text-xs text-on-surface-variant">包含4项子流程</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<div class="flex flex-col">
+<span class="text-on-surface font-semibold">奖惩与绩效管理板块</span>
+<span class="text-xs text-on-surface-variant">包含4项子流程</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<div class="flex flex-col">
+<span class="text-on-surface font-semibold">离职管理板块</span>
+<span class="text-xs text-on-surface-variant">包含4项子流程</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- Group 2: 社会保险 -->
+<section class="rounded-xl overflow-hidden bg-[#F0F7FF] p-4 card-group-shadow">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-[#1E6FFF] font-h3 text-lg font-bold">社会保险全流程管理</h2>
+</div>
+<div class="space-y-3">
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<span class="text-on-surface font-medium">参保登记与账户管理</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<span class="text-on-surface font-medium">社保日常操作规范</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<span class="text-on-surface font-medium">社保待遇申领</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<span class="text-on-surface font-medium">社保合规与风险防控</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- Group 3: 住房公积金 -->
+<section class="rounded-xl overflow-hidden bg-[#F5FAFF] p-4 card-group-shadow">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-[#1E6FFF] font-h3 text-lg font-bold">住房公积金全流程管理</h2>
+</div>
+<div class="space-y-3">
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<span class="text-on-surface font-medium">开户与账户管理</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<span class="text-on-surface font-medium">日常缴存操作</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<span class="text-on-surface font-medium">提取与贷款</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<span class="text-on-surface font-medium">合规与争议处理</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- Group 4: 商业保险 -->
+<section class="rounded-xl overflow-hidden bg-[#EBF4FF] p-4 card-group-shadow">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-[#1E6FFF] font-h3 text-lg font-bold">商业保险</h2>
+</div>
+<div class="space-y-3">
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<span class="text-on-surface font-medium">商业保险品类认知</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<span class="text-on-surface font-medium">投保与理赔管理</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<span class="text-on-surface font-medium">商保与用工成本优化</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- Group 5: 用工风险测评 -->
+<section class="rounded-xl overflow-hidden bg-[#F0F7FF] p-4 card-group-shadow">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-[#1E6FFF] font-h3 text-lg font-bold">用工风险测评</h2>
+</div>
+<div class="space-y-3">
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<span class="text-on-surface font-medium">测评模型与指标体系</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<span class="text-on-surface font-medium">测评方式与报告</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between bg-white p-4 rounded-xl list-item-active transition-all duration-200" href="#">
+<span class="text-on-surface font-medium">争议类型与裁判规则</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- Help Banner -->
+<div class="mt-8">
+<div class="relative w-full h-32 rounded-xl overflow-hidden group">
+<img alt="Service Support" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmEt5ISwb41D0yicuxocXd74lHw7W4vZvZRuZ68ALRhtfFh6vwHOUv3Y_leCj1608vX9Kdin8To78AUXzp7ocxxpEQPPy5dVpmo9fhWNTFgp_XPi01C_1rxzt6uNmvD9sAjzULRDxiKnl6CictQcXQhKxWC21mOhy9buW68Zs_c2P3uszncwSyy93RjoiPrY0Ulen6rOknUZyk4wuqLyX0qz8mA9TzC51iab4wU61AIRmh3Loj7pHEFrl0FhXKFm8mcYSDQZYWLQ3w">
+<div class="absolute inset-0 bg-gradient-to-r from-[#1E6FFF]/80 to-transparent flex flex-col justify-center px-6">
+<h4 class="text-white font-bold text-lg">需要人力咨询？</h4>
+<p class="text-white/90 text-xs mt-1">在线HR专家为您提供专业协助</p>
+<button class="mt-3 bg-white text-[#1E6FFF] px-4 py-1.5 rounded-full text-xs font-semibold w-fit active:scale-95 transition-transform">立即咨询</button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-[56px] px-2 pb-safe bg-surface shadow-[0_-4px_12px_rgba(0,0,0,0.05)] border-t border-surface-variant z-50 rounded-t-xl custom-safe-bottom">
+<a class="flex flex-col items-center justify-center text-secondary scale-95 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[12px]">首页</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary scale-95 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-[12px]">智能问答</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1E6FFF] font-semibold scale-95 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">domain</span>
+<span class="text-[12px]">企业信息</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary scale-95 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[12px]">我的</span>
+</a>
+</nav>
+<script>
+        document.querySelectorAll('a').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                if (anchor.getAttribute('href') === '#') {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+
+
+</body></html>

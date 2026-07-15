@@ -3,15 +3,15 @@
     <!-- Banner -->
     <view class="banner-section">
       <view class="banner-overlay">
-        <text class="banner-title">企业一站式服务</text>
+        <text class="banner-title">{{ banner.title || '企业一站式服务' }}</text>
         <text class="banner-subtitle">专业、高效、可靠的数字化管理助手</text>
       </view>
-      <image class="banner-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAYovAZpMyqLQLpfn-YxzSJtnZSUJQv7qhsCBdbHic2U4Lp7vAt5qr6BpUmj6iyq79nAug8dfNCqeimzPErsbgBTCp6zCsVf2jvlNuSoGQVxtoi4x0AmOD1pHPVaH8kSPfdPGQ4REZiuOSCqneh6yyH-Ab3xVsn2wIkfFwNgtwsZUeM2bjOpB-a5V2x3sn6tEsIyOI9jmESzeVEl31A7x_oFdQsmyJpMYRu2lH3FMYNfpqDmygzWrEJjDV8pyiM-3d3M-S_7byVXMX" mode="aspectFill" />
+      <image class="banner-img" :src="banner.imageUrl || defaultBannerImg" mode="aspectFill" />
     </view>
 
     <!-- 服务网格 -->
     <view class="service-grid">
-      <view class="service-card" v-for="(item, index) in services" :key="index" @tap="navigateTo(item.path)">
+      <view class="service-card" v-for="(item, index) in services" :key="index" @tap="navigateTo(item)">
         <view class="service-icon" :style="{ backgroundColor: item.iconBg }">
           <text class="icon-text">{{ item.icon }}</text>
         </view>
@@ -41,68 +41,114 @@
     <view class="third-party-grid">
       <view class="third-party-item" v-for="(item, index) in thirdPartyServices" :key="index" @tap="openExternal(item.url)">
         <view class="third-party-icon" :style="{ backgroundColor: item.color }">
-          <text class="third-party-emoji">{{ item.icon }}</text>
+          <image
+            class="third-party-icon-img"
+            :src="getIconUrl(item.icon)"
+            mode="aspectFit"
+          />
         </view>
         <text class="third-party-name">{{ item.name }}</text>
       </view>
     </view>
 
     <!-- 底部导航 -->
-    <view class="bottom-nav safe-area-bottom">
-      <view class="nav-item nav-active" @tap="switchTab(0)">
-        <text class="nav-icon">🏠</text>
-        <text class="nav-label">首页</text>
-      </view>
-      <view class="nav-item" @tap="switchTab(1)">
-        <text class="nav-icon">💬</text>
-        <text class="nav-label">智能问答</text>
-      </view>
-      <view class="nav-item" @tap="switchTab(2)">
-        <text class="nav-icon">💼</text>
-        <text class="nav-label">企业信息</text>
-      </view>
-      <view class="nav-item" @tap="switchTab(3)">
-        <text class="nav-icon">👤</text>
-        <text class="nav-label">我的</text>
+    <BottomNav :active="0" />
+
+    <!-- 新用户免费咨询弹窗 -->
+    <view class="free-consult-mask" v-if="showFreeConsult" @tap.self="closeFreeConsult">
+      <view class="free-consult-modal">
+        <view class="free-consult-icon">💬</view>
+        <text class="free-consult-title">恭喜您！</text>
+        <text class="free-consult-desc">作为新用户，您可以立即体验我们免费提供的<text class="highlight">{{ freeConsultDuration }}分钟</text>人工咨询服务，专业顾问在线为您解答。</text>
+        <view class="free-consult-btns">
+          <view class="btn-secondary" @tap="closeFreeConsult">
+            <text class="btn-secondary-text">以后再说</text>
+          </view>
+          <view class="btn-primary" @tap="claimFreeConsult">
+            <text class="btn-primary-text">{{ claiming ? '开启中...' : '立即使用' }}</text>
+          </view>
+        </view>
       </view>
     </view>
   </view>
 </template>
 
 <script>
+import { getBanners, getCategories, getThirdPartyLinks, getConsultationConfig, claimFreeConsultation } from '@/api/index.js'
+import BottomNav from '@/components/BottomNav.vue'
+
 export default {
+  components: { BottomNav },
   data() {
     return {
-      services: [
-        { icon: '🛡️', title: '社保+公积金', desc: '缴纳/查询/提取', iconBg: 'rgba(0,83,205,0.1)', path: '' },
-        { icon: '🏢', title: '工商管理', desc: '注册/变更/注销', iconBg: 'var(--color-secondary-container)', path: '' },
-        { icon: '💰', title: '财税管理', desc: '报税/筹划/审计', iconBg: 'var(--color-error-container)', path: '' },
-        { icon: '👥', title: '人力资源', desc: '招聘/培训/绩效', iconBg: 'rgba(0,83,205,0.1)', path: '/pages/enterprise/index' },
-        { icon: '✅', title: '商业保险', desc: '理赔/咨询/方案', iconBg: 'rgba(161,59,0,0.1)', path: '' },
-        { icon: '🧮', title: '工具计算器', desc: '个税/房贷/五险一金', iconBg: 'rgba(20,107,251,0.2)', path: '/pages/tax-calculator/index' }
-      ],
-      thirdPartyServices: [
-        { icon: '⚖️', name: '人民法院在线服务', color: '#e31e24', url: '' },
-        { icon: '🔨', name: '审判流程信息公开', color: '#e31e24', url: '' },
-        { icon: '📖', name: '人民法院案例库', color: '#e31e24', url: '' },
-        { icon: '🗄️', name: '国家法律法规数据库', color: '#8b1a1a', url: '' },
-        { icon: '🤝', name: '多元调解', color: '#e31e24', url: '' },
-        { icon: '🛡️', name: '中国律师身份核验', color: '#e31e24', url: '' },
-        { icon: '📋', name: '国家企业信用信息', color: '#d4a017', url: '' },
-        { icon: '📅', name: '放假安排', color: '#f39c12', url: '' }
-      ]
+      defaultBannerImg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDAYovAZpMyqLQLpfn-YxzSJtnZSUJQv7qhsCBdbHic2U4Lp7vAt5qr6BpUmj6iyq79nAug8dfNCqeimzPErsbgBTCp6zCsVf2jvlNuSoGQVxtoi4x0AmOD1pHPVaH8kSPfdPGQ4REZiuOSCqneh6yyH-Ab3xVsn2wIkfFwNgtwsZUeM2bjOpB-a5V2x3sn6tEsIyOI9jmESzeVEl31A7x_oFdQsmyJpMYRu2lH3FMYNfpqDmygzWrEJjDV8pyiM-3d3M-S_7byVXMX',
+      banner: {},
+      services: [],
+      thirdPartyServices: [],
+      showFreeConsult: false,
+      freeConsultDuration: 10,
+      claiming: false
+    }
+  },
+  onLoad(options) {
+    this.loadData()
+    // 新用户注册后进入首页，触发免费咨询弹窗
+    if (options && options.newUser === '1') {
+      this.checkFreeConsult()
     }
   },
   methods: {
-    navigateTo(path) {
-      if (path) {
-        uni.navigateTo({ url: path })
+    async loadData() {
+      try {
+        // 并行加载首页数据
+        const [banners, categories, links] = await Promise.all([
+          getBanners(),
+          getCategories(),
+          getThirdPartyLinks()
+        ])
+
+        // 设置轮播图（取第一张）
+        if (banners && banners.length > 0) {
+          this.banner = banners[0]
+        }
+
+        // 映射服务分类到首页网格格式
+        if (categories && categories.length > 0) {
+          this.services = categories.map(cat => {
+            return {
+              id: cat.id,
+              icon: cat.emoji || '',
+              title: cat.name,
+              desc: cat.description,
+              iconBg: cat.iconBg || 'rgba(0,83,205,0.1)',
+              path: cat.path || ''
+            }
+          })
+        }
+
+        // 映射第三方链接
+        if (links && links.length > 0) {
+          this.thirdPartyServices = links.map(link => ({
+            icon: link.icon || 'link',
+            name: link.name,
+            color: link.iconBgColor || '#e31e24',
+            url: link.url || ''
+          }))
+        }
+      } catch (e) {
+        console.error('加载首页数据失败:', e)
       }
     },
-    switchTab(index) {
-      const tabs = ['/pages/index/index', '/pages/qa/index', '/pages/enterprise/index', '/pages/my/index']
-      if (index === 0) return
-      uni.navigateTo({ url: tabs[index] })
+    navigateTo(item) {
+      if (!item) return
+      // 兼容字符串（直接路径）和对象（含 path/id）
+      let url = typeof item === 'string' ? item : item.path
+      if (!url) return
+      // 携带分类ID跳转到企业页
+      if (typeof item === 'object' && item.id && url.includes('/pages/enterprise/index')) {
+        url += (url.includes('?') ? '&' : '?') + 'categoryId=' + item.id
+      }
+      uni.navigateTo({ url })
     },
     openExternal(url) {
       if (url) {
@@ -115,6 +161,48 @@ export default {
           success: () => uni.showToast({ title: '链接已复制', icon: 'none' })
         })
         // #endif
+      }
+    },
+    getIconUrl(iconName) {
+      // 如果是 Material Symbols 图标名，使用 Google CDN SVG
+      if (iconName && !/^\p{Emoji}/u.test(iconName)) {
+        return 'https://fonts.gstatic.com/s/i/materialicons/' + iconName + '/v1/24px.svg'
+      }
+      return ''
+    },
+
+    async checkFreeConsult() {
+      try {
+        const res = await getConsultationConfig()
+        if (res && res.enabled && res.freeMinutesRemaining > 0 && !res.freeConsultationUsed) {
+          this.freeConsultDuration = Math.floor(res.freeMinutesRemaining)
+          this.showFreeConsult = true
+        }
+      } catch (e) {
+        // 静默失败
+      }
+    },
+
+    closeFreeConsult() {
+      this.showFreeConsult = false
+    },
+
+    async claimFreeConsult() {
+      if (this.claiming) return
+      this.claiming = true
+      try {
+        const res = await claimFreeConsultation()
+        uni.showToast({ title: '咨询已开启', icon: 'success' })
+        this.showFreeConsult = false
+        // 跳转到咨询页面，传递咨询ID和剩余时间
+        const cId = res && res.consultation ? res.consultation.id : ''
+        setTimeout(() => {
+          uni.navigateTo({ url: '/pages/support-chat/index?consultationId=' + cId })
+        }, 1000)
+      } catch (e) {
+        // 错误已在拦截器中提示
+      } finally {
+        this.claiming = false
       }
     }
   }
@@ -269,8 +357,9 @@ export default {
   justify-content: center;
   box-shadow: var(--shadow-sm);
 }
-.third-party-emoji {
-  font-size: 32rpx;
+.third-party-icon-img {
+  width: 40rpx;
+  height: 40rpx;
 }
 .third-party-name {
   font-size: var(--font-caption);
@@ -278,38 +367,51 @@ export default {
   line-height: 1.3;
 }
 
-/* 底部导航 */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
-  background-color: var(--color-surface-container-lowest);
-  border-top: 1px solid var(--color-outline-variant);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 110rpx;
-  padding: 0 var(--gutter-grid);
+/* ===== 新用户免费咨询弹窗 ===== */
+.free-consult-mask {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5); z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
 }
-.nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 4rpx 16rpx;
+.free-consult-modal {
+  width: 80%; max-width: 600rpx;
+  background: #fff; border-radius: 24rpx;
+  padding: 48rpx 40rpx 36rpx;
+  display: flex; flex-direction: column; align-items: center;
+  box-shadow: 0 16rpx 48rpx rgba(0,0,0,0.15);
 }
-.nav-icon {
-  font-size: 44rpx;
-  margin-bottom: 2rpx;
+.free-consult-icon {
+  width: 96rpx; height: 96rpx; border-radius: 50%;
+  background: rgba(0,83,205,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48rpx; margin-bottom: 24rpx;
 }
-.nav-label {
-  font-size: var(--font-label-sm);
-  color: var(--color-secondary);
+.free-consult-title {
+  font-size: 38rpx; font-weight: 700; color: #1a1a1a;
+  margin-bottom: 16rpx;
 }
-.nav-active .nav-label {
-  color: var(--color-primary);
-  font-weight: 600;
+.free-consult-desc {
+  font-size: 28rpx; color: #666; line-height: 1.7;
+  text-align: center; margin-bottom: 40rpx;
 }
+.free-consult-desc .highlight {
+  color: var(--color-primary, #0053cd); font-weight: 700;
+  font-size: 32rpx;
+}
+.free-consult-btns {
+  display: flex; gap: 20rpx; width: 100%;
+}
+.btn-secondary {
+  flex: 1; height: 80rpx; border-radius: 40rpx;
+  border: 1px solid #ddd; background: #fff;
+  display: flex; align-items: center; justify-content: center;
+}
+.btn-secondary-text { font-size: 28rpx; color: #666; }
+.btn-primary {
+  flex: 1; height: 80rpx; border-radius: 40rpx;
+  background: var(--color-primary, #0053cd);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(0,83,205,0.3);
+}
+.btn-primary-text { font-size: 28rpx; color: #fff; font-weight: 600; }
 </style>

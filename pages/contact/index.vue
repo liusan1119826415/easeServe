@@ -1,13 +1,13 @@
 <template>
   <view class="page">
     <!-- 顶部导航 -->
-    <view class="nav-bar">
+    <!-- <view class="nav-bar">
       <view class="nav-left" @tap="goBack">
         <text class="nav-icon">←</text>
       </view>
       <text class="nav-title">联系客服</text>
       <view class="nav-right"></view>
-    </view>
+    </view> -->
 
     <!-- 主内容 -->
     <view class="main">

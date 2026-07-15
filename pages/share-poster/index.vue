@@ -9,8 +9,10 @@
         </view>
         <!-- 用户头像 -->
         <view class="user-section">
-          <view class="user-avatar"><image class="user-avatar-img" src="/static/logo.png" mode="aspectFill" /></view>
-          <text class="user-name">张经理</text>
+          <view class="user-avatar">
+            <image class="user-avatar-img" :src="userInfo.avatar || 'https://pic1.zhimg.com/v2-7d63e24e29ff2f3d8b7c6e7a4e5b5c5d_r.jpg'" mode="aspectFill" />
+          </view>
+          <text class="user-name">{{ userInfo.nickname || '用户' }}</text>
         </view>
         <!-- 标题 -->
         <view class="poster-headlines">
@@ -35,10 +37,42 @@
 </template>
 
 <script>
+import { getProfile } from '@/api/index.js'
+
 export default {
+  data() {
+    return {
+      userInfo: {}
+    }
+  },
+  onLoad() {
+    this.loadUserInfo()
+  },
   methods: {
-    savePoster() { uni.showToast({ title: '海报保存成功', icon: 'success' }) },
-    sharePoster() { uni.showToast({ title: '分享功能调用中', icon: 'none' }) }
+    loadUserInfo() {
+      // 先从缓存读取
+      try {
+        const cached = uni.getStorageSync('userInfo')
+        if (cached) {
+          this.userInfo = JSON.parse(cached)
+        }
+      } catch (e) {}
+      // 再从接口刷新最新信息
+      getProfile().then(res => {
+        if (res && res.user) {
+          this.userInfo = {
+            nickname: res.user.nickname || '用户',
+            avatar: res.user.avatar || 'https://pic1.zhimg.com/v2-7d63e24e29ff2f3d8b7c6e7a4e5b5c5d_r.jpg'
+          }
+        }
+      }).catch(() => {})
+    },
+    savePoster() {
+      uni.showToast({ title: '海报保存成功', icon: 'success' })
+    },
+    sharePoster() {
+      uni.showToast({ title: '分享功能调用中', icon: 'none' })
+    }
   }
 }
 </script>

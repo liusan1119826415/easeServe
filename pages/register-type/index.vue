@@ -1,13 +1,13 @@
 <template>
   <view class="page">
     <!-- 顶部导航 -->
-    <view class="nav-bar">
+    <!-- <view class="nav-bar">
       <view class="nav-left" @tap="goBack">
         <text class="nav-icon">←</text>
       </view>
       <text class="nav-title">选择注册类型</text>
       <view class="nav-right"></view>
-    </view>
+    </view> -->
 
     <!-- 主内容 -->
     <view class="main">
@@ -57,11 +57,28 @@
 <script>
 export default {
   data() {
-    return { selected: '' }
+    return { selected: '', pendingType: '' }
+  },
+  onShow() {
+    // 登录成功后如果带了 pending 标记，自动继续注册流程
+    const pendingType = uni.getStorageSync('pendingRegisterType')
+    if (pendingType) {
+      uni.removeStorageSync('pendingRegisterType')
+      this.selectType(pendingType)
+    }
   },
   methods: {
     goBack() { uni.navigateBack() },
     selectType(type) {
+      // 检查是否已登录
+      const token = uni.getStorageSync('token')
+      if (!token) {
+        // 未登录，记住选择的类型，跳转登录
+        uni.setStorageSync('pendingRegisterType', type)
+        uni.navigateTo({ url: '/pages/login/index?mode=register' })
+        return
+      }
+
       this.selected = type
       setTimeout(() => {
         if (type === 'individual') {
@@ -86,7 +103,7 @@ export default {
 .nav-icon { font-size: 20px; color: var(--color-primary); }
 .nav-title { font-size: 18px; font-weight: 600; color: var(--color-primary); position: absolute; left: 50%; transform: translateX(-50%); }
 .nav-right { width: 24px; }
-.main { padding: 80px 24px 48px; max-width: 600px; margin: 0 auto; }
+.main { padding: 20px 24px 48px; max-width: 600px; margin: 0 auto; }
 
 .header-text { text-align: center; margin-bottom: 40px; }
 .header-title { font-size: 28px; font-weight: 800; color: var(--color-on-surface); display: block; margin-bottom: 12px; }
